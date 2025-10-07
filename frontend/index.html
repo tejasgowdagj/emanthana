@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Manthana - EC Branch Event</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #00ffcc;
+            --secondary: #0066ff;
+            --dark: #0a0a1a;
+            --darker: #050510;
+            --accent: #ff00aa;
+            --purple: #9933ff;
+        }
+
+        body {
+            background-color: var(--darker);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Enhanced Circuit Board Background */
+        .circuit-board {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--dark) 21px, transparent 1%) center,
+                linear-gradient(var(--dark) 21px, transparent 1%) center,
+                var(--primary);
+            background-size: 22px 22px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: var(--primary);
+            opacity: 0.05;
+        }
+
+        .circuit-line.horizontal {
+            width: 100%;
+            height: 2px;
+        }
+
+        .circuit-line.vertical {
+            width: 2px;
+            height: 100%;
+        }
+
+        .circuit-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: nodePulse 4s infinite ease-in-out;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.5); opacity: 0.3; }
+        }
+
+        /* New Electronics Background Elements */
+        .electronics-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .signal-wave {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 204, 0.1);
+            animation: signalExpand 8s infinite linear;
+        }
+
+        .signal-wave:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .signal-wave:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .signal-wave:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .signal-wave:nth-child(4) {
+            width: 250px;
+            height: 250px;
+            top: 30%;
+            right: 25%;
+            animation-delay: 6s;
+        }
+
+        @keyframes signalExpand {
+            0% {
+                transform: scale(0.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        .microchip {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 204, 0.05);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            animation: rotate 20s infinite linear;
+        }
+
+        .microchip::before, .microchip::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .microchip::before {
+            top: 10px;
+            left: 10px;
+        }
+
+        .microchip::after {
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .microchip:nth-child(5) {
+            top: 15%;
+            right: 10%;
+        }
+
+        .microchip:nth-child(6) {
+            bottom: 25%;
+            left: 15%;
+            animation-delay: -10s;
+        }
+
+        .microchip:nth-child(7) {
+            top: 70%;
+            left: 5%;
+            animation-delay: -5s;
+        }
+
+        .microchip:nth-child(8) {
+            bottom: 10%;
+            right: 20%;
+            animation-delay: -15s;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .antenna {
+            position: absolute;
+            width: 3px;
+            height: 100px;
+            background: linear-gradient(to top, transparent, var(--primary));
+            bottom: 0;
+            left: 50%;
+            transform-origin: bottom center;
+            animation: sway 6s infinite ease-in-out;
+        }
+
+        .antenna::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -7px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.3;
+        }
+
+        .antenna:nth-child(9) {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .antenna:nth-child(10) {
+            left: 80%;
+            animation-delay: 3s;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* New Animation Elements */
+        .binary-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .binary-digit {
+            position: absolute;
+            color: rgba(0, 255, 204, 0.2);
+            font-family: monospace;
+            font-size: 16px;
+            animation: binaryFall 10s linear infinite;
+        }
+
+        @keyframes binaryFall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        .pulse-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 255, 204, 0.3);
+            animation: ringPulse 4s infinite ease-out;
+        }
+
+        @keyframes ringPulse {
+            0% {
+                transform: scale(0.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            background: rgba(10, 10, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 5%;
+            background: rgba(5, 5, 16, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+            animation: fadeInDown 1s ease, titleGlow 3s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px var(--primary);
+            }
+            50% {
+                text-shadow: 0 0 20px var(--primary), 0 0 30px var(--primary);
+            }
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 180px 5% 100px;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: rgba(0, 255, 204, 0.1);
+            border-radius: 50%;
+            animation: floatAround 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 102, 255, 0.1);
+        }
+
+        .floating-element:nth-child(2) {
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+            width: 25px;
+            height: 25px;
+            background: rgba(255, 0, 170, 0.1);
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+            width: 15px;
+            height: 15px;
+        }
+
+        .floating-element:nth-child(4) {
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 6s;
+            width: 30px;
+            height: 30px;
+            background: rgba(0, 102, 255, 0.1);
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, 0) rotate(180deg);
+            }
+            75% {
+                transform: translate(50px, -50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Logo Container with Animations */
+        .logo-container {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .logo-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            animation: floatLogo 6s infinite ease-in-out, glowPulse 4s infinite ease-in-out, rotate3D 20s infinite linear;
+            filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.5));
+            transition: all 0.5s ease;
+            border-radius: 20px;
+        }
+
+        /* Logo Animations */
+        @keyframes floatLogo {
+            0%, 100% {
+                transform: translateY(0px) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-15px) scale(1.05) rotate(2deg);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.03) rotate(-1deg);
+            }
+            75% {
+                transform: translateY(-5px) scale(1.02) rotate(1deg);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(0, 255, 204, 0.5));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(0, 255, 204, 0.8)) drop-shadow(0 0 40px rgba(0, 255, 204, 0.4));
+            }
+        }
+
+        @keyframes rotate3D {
+            0% {
+                transform: perspective(1000px) rotateY(0deg);
+            }
+            100% {
+                transform: perspective(1000px) rotateY(360deg);
+            }
+        }
+
+        .logo-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.2) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: pulse 4s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .moving-text-container {
+            overflow: hidden;
+            margin: 20px 0;
+            animation: fadeIn 2s ease;
+        }
+
+        .moving-text {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: moveText 3s infinite alternate, float 4s infinite ease-in-out, textShimmer 5s infinite linear;
+            position: relative;
+        }
+
+        @keyframes textShimmer {
+            0% {
+                background-position: -500px 0;
+            }
+            100% {
+                background-position: 500px 0;
+            }
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(-50px);
+            }
+            100% {
+                transform: translateX(50px);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            margin: 10px 0;
+            font-size: 1.2rem;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .hero .glow {
+            text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary);
+            color: #fff;
+        }
+
+        .countdown {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 3s ease;
+        }
+
+        .countdown span {
+            background: rgba(0, 255, 204, 0.2);
+            padding: 10px 15px;
+            border-radius: 5px;
+            min-width: 80px;
+            display: inline-block;
+            animation: pulse 2s infinite, countdownFlip 1s ease;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes countdownFlip {
+            0% {
+                transform: rotateX(0);
+            }
+            50% {
+                transform: rotateX(90deg);
+            }
+            100% {
+                transform: rotateX(0);
+            }
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 5%;
+            margin: 20px;
+            border-radius: 15px;
+            background: rgba(10, 10, 26, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.05), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .section.visible::before {
+            left: 100%;
+        }
+
+        .section.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            color: var(--primary);
+            animation: fadeInDown 1s ease, textGlow 3s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0%, 100% {
+                text-shadow: 0 0 5px var(--primary);
+            }
+            50% {
+                text-shadow: 0 0 15px var(--primary), 0 0 20px var(--primary);
+            }
+        }
+
+        /* Events Section - Fixed Layout */
+        .events-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .events-left, .events-right {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .events-middle {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .event-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .events-left .event-item {
+            transform: translateX(-100px) rotateY(-10deg);
+            opacity: 0;
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .events-right .event-item {
+            transform: translateX(100px) rotateY(10deg);
+            opacity: 0;
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        .events-middle .event-item {
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .event-item:nth-child(1) { animation-delay: 0.1s; }
+        .event-item:nth-child(2) { animation-delay: 0.2s; }
+        .event-item:nth-child(3) { animation-delay: 0.3s; }
+        .event-item:nth-child(4) { animation-delay: 0.4s; }
+        .event-item:nth-child(5) { animation-delay: 0.5s; }
+        .event-item:nth-child(6) { animation-delay: 0.6s; }
+        .event-item:nth-child(7) { animation-delay: 0.7s; }
+
+        .event-item:hover {
+            transform: translateY(-10px) rotateY(5deg) scale(1.02) !important;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 30px rgba(0, 255, 204, 0.2);
+        }
+
+        .event-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 204, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .event-item:hover::before {
+            left: 100%;
+        }
+
+        .event-item h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .event-item h3 i {
+            margin-right: 10px;
+            color: var(--accent);
+            animation: iconSpin 5s infinite linear;
+        }
+
+        @keyframes iconSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .event-item ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .event-item li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .event-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            animation: listBullet 2s infinite;
+        }
+
+        @keyframes listBullet {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        .register-btn {
+            margin-top: 15px;
+        }
+
+        .register-btn a {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+            animation: buttonPulse 2s infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% {
+                box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+            }
+            50% {
+                box-shadow: 0 5px 25px rgba(0, 255, 204, 0.6);
+            }
+        }
+
+        .register-btn a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .register-btn a:hover::before {
+            left: 100%;
+        }
+
+        .register-btn a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 255, 204, 0.5);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #search {
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            animation: searchPulse 3s infinite;
+        }
+
+        @keyframes searchPulse {
+            0%, 100% {
+                box-shadow: 0 0 5px rgba(0, 255, 204, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+            }
+        }
+
+        #search:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        #search::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            transform: translateX(-50px);
+            opacity: 0;
+            animation: slideInRight 0.5s ease forwards;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .contact:hover::before {
+            transform: scaleY(1);
+        }
+
+        .contact:nth-child(even) {
+            transform: translateX(50px);
+            animation: slideInLeft 0.5s ease forwards;
+        }
+
+        .contact:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .role {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .phone a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .phone a i {
+            margin-right: 8px;
+            animation: phoneVibrate 2s infinite;
+        }
+
+        @keyframes phoneVibrate {
+            0%, 7%, 14%, 21%, 28% {
+                transform: rotate(0);
+            }
+            3.5%, 10.5%, 17.5%, 24.5% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        .phone a:hover {
+            text-shadow: 0 0 10px var(--secondary);
+            color: var(--primary);
+        }
+
+        /* Location Section */
+        .bgs-photo-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: zoomIn 1s ease, containerFloat 6s infinite ease-in-out;
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            position: relative;
+        }
+
+        @keyframes containerFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .image-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            animation: zoomInOut 15s infinite;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        @keyframes zoomInOut {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .live-map {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        .map-fallback {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        /* Jury Section */
+        .jury-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .jury-member {
+            width: 350px;
+            height: 450px;
+            perspective: 1000px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .jury-member:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .jury-member:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .jury-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            animation: juryFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes juryFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .jury-member:hover .jury-inner {
+            transform: rotateY(180deg) scale(1.05);
+        }
+
+        .jury-front, .jury-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .jury-front {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        .jury-back {
+            background: rgba(0, 255, 204, 0.05);
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        .jury-front img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+            animation: bounce 2s infinite, photoGlow 3s infinite alternate;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        @keyframes photoGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+            }
+        }
+
+        .jury-front h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .jury-back h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        /* Sponsors Section */
+        .sponsor-group {
+            margin-bottom: 50px;
+        }
+
+        .sponsor-heading {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            animation: fadeIn 1.5s ease;
+        }
+
+        .sponsor-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .sponsor-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            width: 280px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards, sponsorFloat 6s infinite ease-in-out;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+        }
+
+        @keyframes sponsorFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .sponsor-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .sponsor-card:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 30px rgba(0, 255, 204, 0.2);
+        }
+
+        .sponsor-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .sponsor-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            animation: pulse 3s infinite, logoRotate 10s infinite linear;
+            border: 2px solid var(--primary);
+        }
+
+        @keyframes logoRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .sponsor-logo img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+        }
+
+        .sponsor-name {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .sponsor-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(5, 5, 16, 0.9);
+            margin-top: 50px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 2s ease;
+            border-top: 1px solid rgba(0, 255, 204, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--purple));
+            animation: footerLine 3s infinite linear;
+        }
+
+        @keyframes footerLine {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) rotateY(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) rotateY(10deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* New Animations */
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: rgba(5, 5, 16, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: right 0.5s;
+                z-index: 999;
+                border-left: 1px solid rgba(0, 255, 204, 0.2);
+            }
+
+            .navbar-links.active {
+                right: 0;
+            }
+
+            .navbar-links li {
+                margin: 15px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .logo-container {
+                width: 220px;
+                height: 220px;
+            }
+
+            .moving-text {
+                font-size: 2.5rem;
+            }
+
+            .countdown {
+                font-size: 1.2rem;
+            }
+
+            .countdown span {
+                min-width: 60px;
+                padding: 8px 12px;
+            }
+
+            .events-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .events-left .event-item, .events-right .event-item, .events-middle .event-item {
+                transform: translateY(50px);
+                animation: fadeInUp 0.8s ease forwards;
+            }
+
+            .jury-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .jury-member {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .sponsor-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sponsor-card {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .section {
+                margin: 10px;
+                padding: 40px 3%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Binary Rain Animation -->
+    <div class="binary-rain" id="binaryRain"></div>
+    
+    <!-- Electronics Background Elements -->
+    <div class="electronics-bg">
+        <div class="signal-wave"></div>
+        <div class="signal-wave"></div>
+        <div class="signal-wave"></div>
+        <div class="signal-wave"></div>
+        <div class="microchip"></div>
+        <div class="microchip"></div>
+        <div class="microchip"></div>
+        <div class="microchip"></div>
+        <div class="antenna"></div>
+        <div class="antenna"></div>
+    </div>
+    
+    <!-- Circuit Board Background -->
+    <div class="circuit-board"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="navbar-title">E-Manthana</div>
+        <ul class="navbar-links">
+            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#event"><i class="fas fa-calendar-alt"></i> Event</a></li>
+            <li><a href="#result"><i class="fas fa-trophy"></i> Result</a></li>
+            <li><a href="#sponsors"><i class="fas fa-handshake"></i> Sponsors</a></li>
+            <li><a href="#jury"><i class="fas fa-users"></i> Jury</a></li>
+            <li><a href="#location"><i class="fas fa-map-marker-alt"></i> Location</a></li>
+            <li><a href="#coordinators"><i class="fas fa-user-friends"></i> Co-ordinators</a></li>
+            <li><a href="#contact"><i class="fas fa-address-book"></i> Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- HOME Section -->
+    <section class="hero" id="home">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <!-- Logo Container -->
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/280x280/0a0a1a/00ffcc?text=E-MANTHANA" alt="E-Manthana Logo" class="logo-image">
+        </div>
+
+        <div class="moving-text-container">
+            <div class="moving-text">YUKTA</div>
+        </div>
+        <p class="glow">The pulse of innovation</p>
+        <p>E-manthana Technical Events organised by "YUKTA"</p>
+        <p>Branch Fest 2025</p>
+        <div class="countdown">
+            <span id="days">00</span> Days <span id="hours">00</span> Hours
+            <span id="minutes">00</span> Minutes
+            <span id="seconds">00</span> Seconds
+        </div>
+    </section>
+
+    <!-- EVENT Section -->
+    <section class="section" id="event">
+        <h2>Event Schedule</h2>
+        <div class="events-container">
+            <!-- First 3 events on the right side -->
+            <div class="events-right">
+                <div class="event-item">
+                    <h3><i class="fas fa-microchip"></i>  IDEALAB </h3>
+                    <ul>
+                        <li>Where innovation finds its eache </li>
+                        <li>Scheduled 24 Oct 2025, 9:00 AM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="https://forms.gle/dF1FLv2RRZimVjG77">Register to Protospark</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                        <a href="ProtoSpark.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <h3><i class="fas fa-code"></i>FIXCUIT </h3>
+                    <ul>
+                        <li>Think fast, fix faster</li>
+                        <li>Scheduled 24 Oct 2025, 2:00 PM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSelQJj3TUiH1eANdUY4Dy62uSXFsZ6wKLC1Ywiq88unAjlL6Q/viewform?usp=dialog">Register to Code Quest</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                        <a href="FIXCUIT.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <h3><i class="fas fa-lightbulb"></i> CODE QUEST</h3>
+                    <ul>
+                        <li> Journey through debugging, testing and presenting </li>
+                        <li>Scheduled 27 Oct 2025, 9:00 AM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="https://forms.gle/nzE3gnHJuZazsZU39">Register to CodeQuest</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                      <a href="CodeQuest.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Next 3 events on the left side -->
+            <div class="events-left">
+                <div class="event-item">
+                    <h3><i class="fas fa-bolt"></i>PROTOSPARK FIXCUIT</h3>
+                    <ul>
+                        <li>Ignite ideas from prototypes to presenting</li>
+                        <li>Scheduled 27 Oct 2025, 9:00 AM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="https://forms.gle/WP8WSs3wLj6Xbjpo9">Register to Fixcuit</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                        <a href="FIXCUIT.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <h3><i class="fas fa-mask"></i> Veil of Secrets</h3>
+                    <ul>
+                        <li>Hidden truths, twisted paths, one winner</li>
+                        <li>Scheduled 27 Oct 2025, 2:00 PM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="https://forms.gle/GbGMdcC93GtVsz3K6">Register to Veil of Secrets</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                      <a href="Veil of Secrets.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>
+                </div>
+
+                <div class="event-item">
+                    <h3><i class="fas fa-microphone"></i> MICDROP</h3>
+                    <ul>
+                        <li>Mic on, minds on fire</li>
+                        <li>Scheduled 27 Oct 2025, 3:30 PM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="https://forms.gle/iejCfVSJVRd4uKVLA">Register to MicDrop</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                      <a href="MICDROP.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>  
+                </div>
+            </div>
+            
+            <!-- Remaining event in the middle -->
+            <div class="events-middle">
+                <div class="event-item">
+                    <h3><i class="fas fa-brain"></i> IQ INFINITY</h3>
+                    <ul>
+                        <li>Where infinite knowledge meets sharp minds</li>
+                        <li>Scheduled 31 Oct 2025, 10:00 AM</li>
+                    </ul>
+                    <div class="register-btn">
+                        <a href="register-ai-challenge.html">Register to IQ Infinity</a>
+                    </div>
+                    <div class="register-btn" style="margin-top: 10px;">
+                      <a href="QUIZ.pdf" target="_blank" download>Download Rules (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESULT Section -->
+    <section class="section" id="result">
+        <h2>Live Results</h2>
+        <div class="event-card">
+            <p>Results will be updated during the event...</p>
+            <div class="results-placeholder">
+                <i class="fas fa-trophy" style="font-size: 4rem; color: var(--primary); margin: 20px 0;"></i>
+                <p>Stay tuned for live updates during E-Manthana 2025!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPONSORS Section -->
+    <section class="section" id="sponsors">
+        <h2>They Trusted Us</h2>
+
+        <div class="sponsor-group">
+            <h3 class="sponsor-heading">Financial Sponsors</h3>
+            <div class="sponsor-cards">
+                <div class="sponsor-card">
+                    <div class="sponsor-badge">Financial</div>
+                    <div class="sponsor-logo">
+                        <img src="https://via.placeholder.com/80/0a0a1a/00ffcc?text=Logo" alt="logo-name" />
+                    </div>
+                    <h4 class="sponsor-name">Sponsor Company 1</h4>
+                    <p class="sponsor-description">Leading technology solutions provider</p>
+                </div>
+                <div class="sponsor-card">
+                    <div class="sponsor-badge">Financial</div>
+                    <div class="sponsor-logo">
+                        <img src="https://via.placeholder.com/80/0a0a1a/00ffcc?text=Logo" alt="logo-name" />
+                    </div>
+                    <h4 class="sponsor-name">Sponsor Company 2</h4>
+                    <p class="sponsor-description">Innovation and research partner</p>
+                </div>
+                <div class="sponsor-card">
+                    <div class="sponsor-badge">Financial</div>
+                    <div class="sponsor-logo">
+                        <img src="https://via.placeholder.com/80/0a0a1a/00ffcc?text=Logo" alt="logo-name" />
+                    </div>
+                    <h4 class="sponsor-name">Sponsor Company 3</h4>
+                    <p class="sponsor-description">Industry leader in electronics</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="sponsor-group">
+            <h3 class="sponsor-heading">Technology Partners</h3>
+            <div class="sponsor-cards">
+                <div class="sponsor-card">
+                    <div class="sponsor-badge">Technology</div>
+                    <div class="sponsor-logo">
+                        <img src="https://via.placeholder.com/80/0a0a1a/00ffcc?text=Logo" alt="logo-name" />
+                    </div>
+                    <h4 class="sponsor-name">Tech Partner 1</h4>
+                    <p class="sponsor-description">Cutting-edge hardware solutions</p>
+                </div>
+                <div class="sponsor-card">
+                    <div class="sponsor-badge">Technology</div>
+                    <div class="sponsor-logo">
+                        <img src="https://via.placeholder.com/80/0a0a1a/00ffcc?text=Logo" alt="logo-name" />
+                    </div>
+                    <h4 class="sponsor-name">Tech Partner 2</h4>
+                    <p class="sponsor-description">Software development experts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JURY Section -->
+    <section class="section" id="jury">
+        <h2>About Jury's</h2>
+        <div class="jury-wrapper">
+            <!-- Jury 1 -->
+            <div class="jury-member">
+                <div class="jury-inner">
+                    <div class="jury-front">
+                        <img src="https://via.placeholder.com/150/0a0a1a/00ffcc?text=Tejas" alt="Tejas Gowda G J" />
+                        <h3>Tejas Gowda G J</h3>
+                        <p>IIT Chikkamagaluru Karnataka, India</p>
+                    </div>
+                    <div class="jury-back">
+                        <h3>About</h3>
+                        <p>
+                            Tejas Gowda G J is a prominent figure in the technology sector,
+                            currently serving as the Executive Director and founder of
+                            Capulus Technologies Private Limited based in Karnataka, India.
+                            With over a decade of hands-on experience in the tech industry,
+                            Tejas has demonstrated a strong commitment to leadership and
+                            innovation. His journey at CapulusTech has been fueled by a
+                            passion for developing technology-driven solutions that redefine
+                            user experiences and address the evolving demands of the market.
+                            Under his guidance, the team at Capulus prioritizes expertise in
+                            software development, ensuring that the products they deliver
+                            not only meet market needs but also contribute meaningfully to
+                            technological advancement.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Jury 2 -->
+            <div class="jury-member">
+                <div class="jury-inner">
+                    <div class="jury-front">
+                        <img src="https://via.placeholder.com/150/0a0a1a/00ffcc?text=Guruprasad" alt="Guruprasad" />
+                        <h3>Guruprasad</h3>
+                        <p>ECE Branch, AIT, Karnataka; Founder, Automatech</p>
+                    </div>
+                    <div class="jury-back">
+                        <h3>About</h3>
+                        <p>
+                            Guruprasad is an alumnus of the ECE branch at AIT, Karnataka.
+                            With strong full-stack and ECE expertise, he has a passion for
+                            building innovative solutions. He founded Automatech, a
+                            government-registered technology startup focused on tools and
+                            platforms simplifying software and machine learning development.
+                            Key projects include MULTIDE and the Mul-Model platform, a
+                            final year project facilitating collaboration on machine learning
+                            models. The company builds machine learning pipelines to
+                            automate backend workflows and has been recognized by the
+                            Education Excellence Foundation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Jury 3 -->
+            <div class="jury-member">
+                <div class="jury-inner">
+                    <div class="jury-front">
+                        <img src="https://via.placeholder.com/150/0a0a1a/00ffcc?text=Hemanth" alt="Hemanth S" />
+                        <h3>Hemanth S</h3>
+                        <p>
+                            Final Year ECE, Adichunchanagiri Institute of Technology,
+                            Chikkamagaluru
+                        </p>
+                    </div>
+                    <div class="jury-back">
+                        <h3>About</h3>
+                        <p>
+                            Hemanth S is a final-year ECE student at Adichunchanagiri
+                            Institute of Technology, Chikkamagaluru. Driven by his passion
+                            for entrepreneurship, he founded a community-based startup,
+                            WETEAMRK7, which is incubated at Shri Siddhartha Academy of
+                            Higher Education. Through this venture, he is serving multiple
+                            clients both in India and abroad. He has already partnered with
+                            Adichunchanagiri Institute of Technology, Chikkamagaluru, as the
+                            Internship & Learning Partner for Smart Hack - 2K25 (Smart India
+                            Internal Hackathon 2025), where he provided internship
+                            opportunities and free Udemy access to the top five teams from a
+                            pool of 49 teams. Alongside his entrepreneurial journey, he is
+                            also contributing to global research initiatives as a NASA
+                            Citizen Scientist, reflecting his commitment to both innovation
+                            and knowledge-sharing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION Section -->
+    <section class="section" id="location">
+        <h2>Event Location</h2>
+        <p style="text-align: center; margin-bottom: 30px;">The E-manthana event will be held at the BGS Block I.</p>
+
+        <!-- Animated Photo Merge for BGS Block -->
+        <div class="bgs-photo-container">
+            <div class="image-container">
+                <img src="love.png" class="slide active" alt="BGS Block View 1" />
+                <img src="image2.png" class="slide" alt="BGS Block View 2" />
+                <img src="logo2.png" class="slide" alt="BGS Block View 3" />
+            </div>
+        </div>
+
+        <div class="live-map" style="margin-top: 30px">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.269776052234!2d77.59485131482267!3d13.04150969083012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae17f6bf6e3b7d%3A0x2a3b3b3b3b3b3b3b!2sAdichunchanagiri%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1647856789012!5m2!1sen!2sin"
+                width="100%"
+                height="400"
+                style="border: 0; border-radius: 15px; box-shadow: 0 0 20px var(--primary)"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="BGS Block Location Map"
+            >
+            </iframe>
+            <div class="map-fallback">
+                <p>📍 <strong>BGS Block I Location</strong></p>
+                <p>
+                    If the map doesn't load, you can view it
+                    <a
+                        href="https://aitckm.edu.in/"
+                        target="_blank"
+                        style="color: var(--primary)"
+                        >here</a
+                    >
+                </p>
+            </div>
+        </div>
+    </section> 
+
+    <!-- CO-ORDINATORS Section -->
+    <section class="section" id="coordinators">
+        <h2>Co-ordinators</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Meet our dedicated team of event coordinators</p>
+
+        <!-- Animated Photo Merge for Coordinators -->
+        <div class="bgs-photo-container">
+            <div class="image-container">
+                <img src="image1.png" class="slide active" alt="Coordinators Team 1" />
+                <img src="images.png" class="slide" alt="Coordinators Team 2" />
+                <img src="image.png" class="slide" alt="Coordinators Team 3" />
+            </div>
+        </div>
+
+        
+        </div>
+    </section>
+
+    <!-- CONTACT Section -->
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-container">
+            <p style="text-align: center">
+                Click the contacts below to chat in WhatsApp
+            </p>
+            <input
+                type="text"
+                id="search"
+                placeholder="Search by name or role..."
+                onkeyup="filterContacts()"
+            />
+
+            <div id="contactList">
+                <div class="contact">
+                    <div class="name">Pramod B R</div>
+                    <div class="role">IDEALAB QUERY</div>
+                    <div class="phone">
+                        <a href="https://wa.me/916364654984"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">NIHAL GOWDA G Y</div>
+                    <div class="role">VEIL OF SECRETS QUERY</div>
+                    <div class="phone">
+                        <a href="https://wa.me/919611973868"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">KRUTHIKA S</div>
+                    <div class="role">MICDROP QUERY</div>
+                    <div class="phone">
+                        <a href="https://wa.me/919110866304"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">GIRISH V T</div>
+                    <div class="role">IQ INFINITY QUERY</div>
+                    <div class="phone">
+                        <a href="https://wa.me/919380853917"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">MOULYA</div>
+                    <div class="role">FIXCUIT QUERY</div>
+                    <div class="phone">
+                        <a href="https://wa.me/918277300207"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">TEJAS GOWDA G J</div>
+                    <div class="role">CODE QUEST AND PROTOTYPE QUERY</div>
+                    <div class="phone">
+                        <a href="https://wa.me/917204948967"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">HEMANTH S</div>
+                    <div class="role">REGISTRATION QUERY/ANY CLARIFICATIONS REQUIRED</div>
+                    <div class="phone">
+                        <a href="https://wa.me/918073552043"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact">
+                    <div class="name">VISMAYA M</div>
+                    <div class="role">REGISTRATION QUERY/ANY CLARIFICATIONS REQUIRED</div>
+                    <div class="phone">
+                        <a href="https://wa.me/919876543210"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 E-Manthana - EC Branch Event. All rights reserved.</p>
+        <p style="margin-top: 10px; opacity: 0.7;">Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> by EC Department</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById("mobile-menu");
+        const navLinks = document.querySelector(".navbar-links");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            menuToggle.classList.toggle("open");
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Countdown Timer
+        const countdown = () => {
+            const eventDate = new Date("2025-10-31T09:00:00").getTime(); // Set your event date/time
+            const now = new Date().getTime();
+            const gap = eventDate - now;
+
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+
+            const d = Math.floor(gap / day);
+            const h = Math.floor((gap % day) / hour);
+            const m = Math.floor((gap % hour) / minute);
+            const s = Math.floor((gap % minute) / second);
+
+            document.getElementById("days").textContent = d.toString().padStart(2, "0");
+            document.getElementById("hours").textContent = h.toString().padStart(2, "0");
+            document.getElementById("minutes").textContent = m
+                .toString()
+                .padStart(2, "0");
+            document.getElementById("seconds").textContent = s
+                .toString()
+                .padStart(2, "0");
+        };
+
+        setInterval(countdown, 1000);
+
+        // Contact Search Filter
+        function filterContacts() {
+            const input = document.getElementById("search").value.toLowerCase();
+            const contacts = document.querySelectorAll("#contactList .contact");
+
+            contacts.forEach((contact) => {
+                const name = contact.querySelector(".name").textContent.toLowerCase();
+                const role = contact.querySelector(".role").textContent.toLowerCase();
+                if (name.includes(input) || role.includes(input)) {
+                    contact.style.display = "block";
+                } else {
+                    contact.style.display = "none";
+                }
+            });
+        }
+
+        // Slideshow Animation
+        document.querySelectorAll(".image-container").forEach((container) => {
+            const slides = container.querySelectorAll(".slide");
+            let current = 0;
+
+            setInterval(() => {
+                slides[current].classList.remove("active");
+                current = (current + 1) % slides.length;
+                slides[current].classList.add("active");
+            }, 3000); // Change every 3 seconds
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add staggered animation to contact items
+        const contactItems = document.querySelectorAll('.contact');
+        contactItems.forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.1}s`;
+        });
+
+        // Create circuit board lines and nodes dynamically
+        function createCircuitElements() {
+            const circuitBoard = document.querySelector('.circuit-board');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // Create horizontal lines
+            for (let i = 0; i < height; i += 40) {
+                const line = document.createElement('div');
+                line.className = 'circuit-line horizontal';
+                line.style.top = `${i}px`;
+                circuitBoard.appendChild(line);
+            }
+            
+            // Create vertical lines
+            for (let i = 0; i < width; i += 40) {
+                const line = document.createElement('div');
+                line.className = 'circuit-line vertical';
+                line.style.left = `${i}px`;
+                circuitBoard.appendChild(line);
+            }
+            
+            // Create nodes at intersections
+            for (let x = 0; x < width; x += 40) {
+                for (let y = 0; y < height; y += 40) {
+                    if (Math.random() > 0.7) { // Only create some nodes randomly
+                        const node = document.createElement('div');
+                        node.className = 'circuit-node';
+                        node.style.left = `${x}px`;
+                        node.style.top = `${y}px`;
+                        circuitBoard.appendChild(node);
+                    }
+                }
+            }
+        }
+
+        // Create binary rain animation
+        function createBinaryRain() {
+            const binaryRain = document.getElementById('binaryRain');
+            const digits = ['0', '1'];
+            
+            for (let i = 0; i < 100; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.textContent = digits[Math.floor(Math.random() * digits.length)];
+                digit.style.left = `${Math.random() * 100}%`;
+                digit.style.animationDelay = `${Math.random() * 10}s`;
+                digit.style.fontSize = `${Math.random() * 10 + 10}px`;
+                binaryRain.appendChild(digit);
+            }
+        }
+
+        // Create pulse rings
+        function createPulseRings() {
+            const electronicsBg = document.querySelector('.electronics-bg');
+            
+            for (let i = 0; i < 5; i++) {
+                const ring = document.createElement('div');
+                ring.className = 'pulse-ring';
+                ring.style.width = `${Math.random() * 100 + 50}px`;
+                ring.style.height = ring.style.width;
+                ring.style.top = `${Math.random() * 100}%`;
+                ring.style.left = `${Math.random() * 100}%`;
+                ring.style.animationDelay = `${Math.random() * 4}s`;
+                electronicsBg.appendChild(ring);
+            }
+        }
+
+        // Initialize animations on load
+        window.addEventListener('load', () => {
+            createCircuitElements();
+            createBinaryRain();
+            createPulseRings();
+            
+            // Start typewriter effect
+            const heroText = document.querySelector('.moving-text');
+            const text = heroText.textContent;
+            heroText.textContent = '';
+            let i = 0;
+            
+            function typeWriter() {
+                if (i < text.length) {
+                    heroText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Add more animations to elements
+        document.querySelectorAll('.event-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    item.style.animation = '';
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>
