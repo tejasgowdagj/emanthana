@@ -11,11 +11,11 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from the frontend directory
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // API routes
