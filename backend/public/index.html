@@ -282,43 +282,6 @@
             overflow: hidden;
         }
 
-        .binary-home {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .binary-home-digit {
-            position: absolute;
-            color: rgba(0, 255, 204, 0.4);
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            animation: binaryHomeFall 8s linear infinite;
-            font-weight: bold;
-        }
-
-        @keyframes binaryHomeFall {
-            0% {
-                transform: translateY(-50px) rotateX(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            80% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotateX(360deg);
-                opacity: 0;
-            }
-        }
-
         .binary-digit {
             position: absolute;
             color: rgba(0, 100, 0, 0.3);
@@ -815,35 +778,26 @@
         .events-container {
             max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .event-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 30px;
             margin-bottom: 30px;
             position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 600px;
         }
 
         .event-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
-            padding: 25px 20px 25px 30px;
+            padding: 25px 20px;
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 255, 204, 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
             max-width: 250px;
-        }
-
-        /* Right padding for second column */
-        .event-card:nth-child(4), .event-card:nth-child(5), .event-card:nth-child(6) {
-            padding-right: 40px;
         }
 
         /* Center the 7th event across both columns */
@@ -1226,19 +1180,6 @@
 
         .jury-member:hover .jury-inner {
             transform: rotateY(180deg) scale(1.05);
-        }
-
-        .jury-inner.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .jury-member.rotating {
-            animation: rotateCard 1s ease-in-out;
-        }
-
-        @keyframes rotateCard {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .jury-front, .jury-back {
@@ -1698,9 +1639,6 @@
 
     <!-- HOME Section -->
     <section class="hero" id="home">
-        <!-- Binary Animation for Home Section -->
-        <div class="binary-home" id="binaryHome"></div>
-
         <div class="floating-elements">
             <div class="floating-element"></div>
             <div class="floating-element"></div>
@@ -1871,8 +1809,21 @@
                         <p>IIT Chikkamagaluru Karnataka, India</p>
                     </div>
                     <div class="jury-back">
-                        <h3>Tejas Gowda G J</h3>
-                        <p>IIT Chikkamagaluru Karnataka, India</p>
+                        <h3>About</h3>
+                        <p>
+                            Tejas Gowda G J is a prominent figure in the technology sector,
+                            currently serving as the Executive Director and founder of
+                            Capulus Technologies Private Limited based in Karnataka, India.
+                            With over a decade of hands-on experience in the tech industry,
+                            Tejas has demonstrated a strong commitment to leadership and
+                            innovation. His journey at CapulusTech has been fueled by a
+                            passion for developing technology-driven solutions that redefine
+                            user experiences and address the evolving demands of the market.
+                            Under his guidance, the team at Capulus prioritizes expertise in
+                            software development, ensuring that the products they deliver
+                            not only meet market needs but also contribute meaningfully to
+                            technological advancement.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1885,8 +1836,19 @@
                         <p>ECE Branch, AIT, Karnataka; Founder, Automatech</p>
                     </div>
                     <div class="jury-back">
-                        <h3>Guruprasad</h3>
-                        <p>ECE Branch, AIT, Karnataka; Founder, Automatech</p>
+                        <h3>About</h3>
+                        <p>
+                            Guruprasad is an alumnus of the ECE branch at AIT, Karnataka.
+                            With strong full-stack and ECE expertise, he has a passion for
+                            building innovative solutions. He founded Automatech, a
+                            government-registered technology startup focused on tools and
+                            platforms simplifying software and machine learning development.
+                            Key projects include MULTIDE and the Mul-Model platform, a
+                            final year project facilitating collaboration on machine learning
+                            models. The company builds machine learning pipelines to
+                            automate backend workflows and has been recognized by the
+                            Education Excellence Foundation.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1902,10 +1864,22 @@
                         </p>
                     </div>
                     <div class="jury-back">
-                        <h3>Hemanth S</h3>
+                        <h3>About</h3>
                         <p>
-                            Final Year ECE, Adichunchanagiri Institute of Technology,
-                            Chikkamagaluru
+                            Hemanth S is a final-year ECE student at Adichunchanagiri
+                            Institute of Technology, Chikkamagaluru. Driven by his passion
+                            for entrepreneurship, he founded a community-based startup,
+                            WETEAMRK7, which is incubated at Shri Siddhartha Academy of
+                            Higher Education. Through this venture, he is serving multiple
+                            clients both in India and abroad. He has already partnered with
+                            Adichunchanagiri Institute of Technology, Chikkamagaluru, as the
+                            Internship & Learning Partner for Smart Hack - 2K25 (Smart India
+                            Internal Hackathon 2025), where he provided internship
+                            opportunities and free Udemy access to the top five teams from a
+                            pool of 49 teams. Alongside his entrepreneurial journey, he is
+                            also contributing to global research initiatives as a NASA
+                            Citizen Scientist, reflecting his commitment to both innovation
+                            and knowledge-sharing.
                         </p>
                     </div>
                 </div>
@@ -2206,7 +2180,7 @@
         function createBinaryRain() {
             const binaryRain = document.getElementById('binaryRain');
             const digits = ['0', '1'];
-
+            
             for (let i = 0; i < 100; i++) {
                 const digit = document.createElement('div');
                 digit.className = 'binary-digit';
@@ -2216,52 +2190,6 @@
                 digit.style.fontSize = `${Math.random() * 10 + 10}px`;
                 binaryRain.appendChild(digit);
             }
-        }
-
-        // Create binary animation for home section
-        function createBinaryHome() {
-            const binaryHome = document.getElementById('binaryHome');
-            const digits = ['0', '1'];
-
-            for (let i = 0; i < 50; i++) {
-                const digit = document.createElement('div');
-                digit.className = 'binary-home-digit';
-                digit.textContent = digits[Math.floor(Math.random() * digits.length)];
-                digit.style.left = `${Math.random() * 100}%`;
-                digit.style.top = `${Math.random() * 100}%`;
-                digit.style.animationDelay = `${Math.random() * 8}s`;
-                binaryHome.appendChild(digit);
-            }
-        }
-
-        // Jury card rotation functionality
-        function initializeJuryCards() {
-            const juryMembers = document.querySelectorAll('.jury-member');
-
-            juryMembers.forEach(member => {
-                // Click event for mouse interactions
-                member.addEventListener('click', function() {
-                    // Add rotating class to trigger animation
-                    this.classList.add('rotating');
-
-                    // Remove the class after animation completes (1s)
-                    setTimeout(() => {
-                        this.classList.remove('rotating');
-                    }, 1000);
-                });
-
-                // Touch event for mobile devices
-                member.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    // Add rotating class to trigger animation
-                    this.classList.add('rotating');
-
-                    // Remove the class after animation completes (1s)
-                    setTimeout(() => {
-                        this.classList.remove('rotating');
-                    }, 1000);
-                });
-            });
         }
 
         // Create pulse rings
@@ -2308,10 +2236,8 @@
         window.addEventListener('load', () => {
             createCircuitElements();
             createBinaryRain();
-            createBinaryHome();
             createPulseRings();
             createDataStreams();
-            initializeJuryCards();
 
             // Start typewriter effect
             const heroText = document.querySelector('.moving-text');
