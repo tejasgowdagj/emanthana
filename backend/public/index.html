@@ -2649,8 +2649,8 @@
 
         .register-btn a {
             display: inline-block;
-            background: #0a212e;
-            color: #000;
+            background: #ffffff;
+            color: #0a212e;
             padding: 12px 25px;
             border-radius: 5px;
             text-decoration: none;
@@ -2658,7 +2658,7 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
 
         .register-btn a:hover {
@@ -4497,10 +4497,8 @@
             .ece-content-after { order: 4 !important; }
 
             /* Mobile: force 'Electronics And communication' and 'Head Of Department' onto single lines */
-            .about-text.hod-section h3,
-            .about-text.ece-section h3,
-            .ece-content-after h3 {
-                font-size: 0.95rem !important;
+            .about-text.hod-section h3 {
+                font-size: 1.1rem !important;
                 line-height: 1.1 !important;
                 white-space: nowrap !important; /* prevent wrapping */
                 overflow: hidden !important;
@@ -4529,6 +4527,7 @@
             html {
                 scroll-behavior: smooth;
                 scroll-padding-top: 80px; /* Account for fixed navbar */
+                -webkit-overflow-scrolling: touch;
             }
 
             /* Fix for mobile viewport */
