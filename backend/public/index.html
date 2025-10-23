@@ -14,8 +14,8 @@
         }
 
         :root {
-            --primary: #00FFCC;
-            --secondary: #00FFCC;
+            --primary: #0a212e;
+            --secondary: #0a212e;
             --dark: #1F4959;
             --darker: #1F4959;
             --accent: #00FFCC;
@@ -163,6 +163,7 @@
             font-weight: bold;
             text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
             margin-bottom: -2px; /* Pull lines closer */
+            color: #FF4500;
         }
 
         .event-name {
@@ -1039,19 +1040,21 @@
         .event-name {
             font-size: 1.8rem !important;
             font-weight: bold !important;
-            color: var(--primary) !important;
-            text-shadow: 0 0 15px rgba(0, 255, 204, 0.6), 0 0 30px rgba(0, 255, 204, 0.3) !important;
-            animation: eventNameGlow 3s infinite alternate, slideInUpCustom 1.5s ease !important;
+            background: linear-gradient(45deg, #FF6B35) !important;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+            color: transparent !important;
             letter-spacing: 1px !important;
             text-align: center !important;
+            margin-top: 5px !important;
             margin-bottom: 10px !important;
             position: relative !important;
             display: inline-block !important;
         }
 
         @keyframes eventNameGlow {
-            0%, 100% { text-shadow: 0 0 15px rgba(0, 255, 204, 0.6), 0 0 30px rgba(0, 255, 204, 0.3); }
-            50% { text-shadow: 0 0 25px rgba(0, 255, 204, 0.9), 0 0 45px rgba(0, 255, 204, 0.6); }
+            0%, 100% { text-shadow: 0 0 15px rgba(26, 1, 18, 0.6), 0 0 30px rgba(147, 131, 79, 0.3); }
+            50% { text-shadow: 0 0 25px rgba(135, 137, 125, 0.9), 0 0 45px rgba(119, 101, 82, 0.6); }
         }
 
         @keyframes slideInUpCustom {
@@ -1143,6 +1146,11 @@
             }
         }
 
+        /* Home section branch name color change */
+        #home .branch-name {
+            color: #db750e !important;
+        }
+
         /* Reduce large sizes for About subheadings and HOD label */
         .about-text.hod-section h3,
         .ece-content-after h3,
@@ -1190,12 +1198,12 @@
             padding: 0 20px;
         }
 
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
-    align-items: center;
-}
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
 
         .about-text h3 {
             color: var(--primary);
@@ -1204,22 +1212,30 @@
             font-weight: bold;
         }
 
-.news-container p,
-.about-text p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
-    text-align: justify;
-}
+        /* Specific styling for Electronics and Communication heading */
+        .ece-content-after h3 {
+            color:  #0a212e !important; /* Lime green color */
+            font-size: 1.8rem !important;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
 
-.about-content .ece-content-after p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
-    text-align: justify;
-}
+        .news-container p,
+        .about-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .about-content .ece-content-after p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
 
         /* Justify text in ece-content-after */
         .ece-content-after p {
@@ -1439,48 +1455,68 @@
             width: 100%;
         }
 
-    /* Mobile responsiveness for About section */
-        @media (max-width: 768px) {
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .about-stats {
-                flex-direction: column;
-                gap: 20px;
-                align-items: center;
-            }
-
-            .stat-item {
-                width: 100%;
-                max-width: 200px;
-            }
-
-            .about-text h3 {
-                font-size: 1.5rem;
-            }
-
-            .about-text p {
-                font-size: 1rem;
-            }
-
-            /* Adjust image container for mobile */
-            .about-content .bgs-photo-container {
-                margin-top: 0;
-                margin-bottom: 15px;
-                width: 100%;
-                max-width: 300px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            /* Make event cards rectangular in mobile view only - force override */
-            body .event-card {
-                width: 250px !important;
-                height: 150px !important;
-            }
+        /* Reduce space between Intercollege and Interdepartment events */
+        .events-container .event-category:nth-child(2) {
+            margin-top: -20px;
         }
+
+    /* Mobile responsiveness for About section */
+    @media (max-width: 768px) {
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Rearrange order for mobile: ece-image-container, ece-content-after, circular-image-container, about-text hod-section */
+        .about-content .ece-image-container {
+            order: 1;
+        }
+        .about-content .ece-content-after {
+            order: 2;
+        }
+        .about-content .circular-image-container {
+            order: 3;
+        }
+        .about-content .about-text.hod-section {
+            order: 4;
+        }
+
+        .about-stats {
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .stat-item {
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1rem;
+        }
+
+        /* Adjust image container for mobile */
+        .about-content .bgs-photo-container {
+            margin-top: 0;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Make event cards rectangular in mobile view only - force override */
+        body .event-card {
+            width: 250px !important;
+            height: 150px !important;
+        }
+    }
         /* Mobile responsiveness for About section */
         @media (max-width: 768px) {
             .about-content {
@@ -2481,7 +2517,7 @@
             text-align: center;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 255, 204, 0.1);
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            box-shadow: 0 0 10px  #0a212e;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 200px;
@@ -2519,7 +2555,7 @@
         }
 
         .event-card h3 {
-            color: var(--primary);
+            color: #0a212e;
             margin-bottom: 10px;
             font-size: 1.4rem;
             display: flex;
@@ -2613,7 +2649,7 @@
 
         .register-btn a {
             display: inline-block;
-            background: #b9e884;
+            background: #0a212e;
             color: #000;
             padding: 12px 25px;
             border-radius: 5px;
@@ -3014,6 +3050,10 @@
             animation-delay: 0.8s;
         }
 
+        .sponsor-card:nth-child(6) {
+            animation-delay: 1s;
+        }
+
         .sponsor-card:hover {
             transform: translateY(-10px) scale(1.05);
             background: rgba(255, 255, 255, 0.08);
@@ -3022,7 +3062,7 @@
 
         .sponsor-badge {
             display: inline-block;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: none;
             color: #000;
             padding: 5px 10px;
             border-radius: 20px;
@@ -3045,14 +3085,32 @@
             width: 100px;
             height: 100px;
             margin: 0 auto 15px;
-            border-radius: 0;
+            border-radius: 50%;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             background: rgba(255, 255, 255, 0.1);
-            animation: pulse 3s infinite, logoRotate 10s infinite linear;
+            animation: sealPrint 1.5s ease-out;
             border: none;
+        }
+
+        @keyframes sealPrint {
+            0% {
+                transform: scale(0) rotate(45deg);
+                opacity: 0;
+                filter: blur(4px);
+            }
+            50% {
+                transform: scale(1.2) rotate(0deg);
+                opacity: 1;
+                filter: blur(1px);
+            }
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+                filter: blur(0px);
+            }
         }
 
         @keyframes logoRotate {
@@ -3068,6 +3126,7 @@
             width: 80%;
             height: 80%;
             object-fit: contain;
+            border-radius: 50%;
         }
 
         .sponsor-name {
@@ -3412,6 +3471,7 @@
                 font-size: 1rem;
                 margin-bottom: -6px;
                 text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+                color: #804600;
             }
 
             .event-name {
@@ -4306,12 +4366,18 @@
                 padding: 0 12px !important;
             }
 
-            /* Swap order of hod-section and ece-content-after in mobile */
-            .about-text.hod-section {
+            /* Correct order for mobile: ece-image-container, ece-content-after, circular-image-container, about-text hod-section */
+            .about-content .ece-image-container {
+                order: 1 !important;
+            }
+            .about-content .ece-content-after {
                 order: 2 !important;
             }
-            .ece-content-after {
-                order: 1 !important;
+            .about-content .circular-image-container {
+                order: 3 !important;
+            }
+            .about-content .about-text.hod-section {
+                order: 4 !important;
             }
 
             .news-container p {
@@ -5765,6 +5831,14 @@ body .section#result .results-placeholder p,
         margin: 0 auto;
     }
 
+    /* Reduce space between Contact Information and Faculty Coordinators */
+    #contact {
+        margin-bottom: 0;
+    }
+    #coordinators {
+        margin-top: -360px;
+    }
+
     .contact-section .section-title {
         text-align: center;
         margin-bottom: 40px;
@@ -5881,6 +5955,30 @@ body .section#result .results-placeholder p,
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
         margin-top: 10px;
+    }
+
+    /* Make faculty coordinator card images circular with reduced width */
+    .contact-section .faculty-cards .card-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .contact-section .faculty-cards .card-image img {
+        border-radius: 50%;
+    }
+
+    /* Make student coordinator card images circular with reduced width */
+    .contact-section .student-cards .card-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .contact-section .student-cards .card-image img {
+        border-radius: 50%;
     }
 
     .contact-section .card-contact i {
@@ -6255,15 +6353,7 @@ body .section#result .results-placeholder p,
     <h2>About</h2>
     <div class="about-container">
     <div class="about-content">
-            <div class="about-text hod-section">
-                <h3>Head of the Department</h3>
-                <p>Dr. Goutham M A, Head of Electronics and Communication Engineering at Adichunchanagiri Institute of Technology, specializes in VLSI and MEMS, holds multiple advanced degrees, and actively publishes research on antennas, sensors, and metamaterials while leading academic development and mentoring scholars at AIT.</p>
-                
-            </div>
-            <div class="circular-image-container">
-                <img src="hod.jpeg" alt="Head of Department" />
-            </div>
-            <div class="ece-image-container">
+        <div class="ece-image-container">
                 <div class="image-container">
                     <img src="FRONT.png" class="slide active" alt="ece2" />
                     <img src="love.png" class="slide" alt="ece2" />
@@ -6271,12 +6361,21 @@ body .section#result .results-placeholder p,
             </div>
              <div class="ece-content-after">
                 <h3> Electronics and Communication</h3>
-                <p>The Electronics and Communication Engineering department started in the year 1981. The department has a rich history of academic excellence and has consistently produced graduates who excel in their careers. With a focus on practical learning and industry collaboration, the department aims to equip students with the skills and knowledge needed to thrive in the ever-evolving field of electronics and communication.</p>
+                <p>The Electronics and Communication Engineering department started in the year 1981. The department has a rich history of academic excellence and has consistently produced graduates who excel in their careers. With  focus on practical learning and industry collaboration, the department aims to equip students with the skills and knowledge needed to thrive in the ever-evolving field of electronics and communication engineering.</p>
                 <p>
                     Department of Electronics and Communication Engineering - AIT
                     <a href="https://share.google/wnsTiEUxE4oLegec2" target="_blank" style="color: var(--primary)">here</a>
                 </p>
+        </div>
+        <div class="about-text hod-section">
+                <h3>Head of the Department</h3>
+                <p>Dr. Goutham M A, Head of Electronics and Communication Engineering at Adichunchanagiri Institute of Technology, specializes in VLSI and MEMS, holds multiple advanced degrees, and actively publishes research on antennas, sensors, and metamaterials while leading academic development and mentoring scholars at AIT.</p>
+                
             </div>
+            <div class="circular-image-container">
+                <img src="hod.png" alt="Head of Department" />
+        </div>
+            
         </div>
     </div>
 </section>
@@ -6287,21 +6386,21 @@ body .section#result .results-placeholder p,
     <section class="section" id="news">
         <h2> About E-Manthana</h2>
         <div class="news-container">
-            <p>E-Manthana is the annual technical fest of the Electronics and Communication Engineering (ECE) Department at the Adichunchanagiri Institute of Technology (AIT), Chikkamagaluru. E-Manthana serves as a platform for innovation, learning, and competition among engineering students. It features technical paper presentations, circuit design contests, project exhibitions, coding challenges, and other engineering-based activities that encourage the practical application of classroom concepts. E-Manthana complements AITâ€™s dynamic campus culture, which also includes major events like Chunchana â€” a grand cultural festival that brings together students from across Karnataka. Together, these events promote both technical excellence and holistic development among students at AIT. **E-Manthana, which began in 2014, has now successfully completed 15 glorious years of inspiring innovation and technical excellence.**</p>
+            <p>E-Manthana is the annual technical fest of the Electronics and Communication Engineering (ECE) Department at the Adichunchanagiri Institute of Technology (AIT), Chikkamagaluru. E-Manthana serves as a platform for innovation, learning, and competition among engineering students. It features technical paper presentations, circuit design contests, project exhibitions, coding challenges, and other engineering-based activities that encourage the practical application of classroom concepts. Join us for an exciting cultural event filled with vibrant performances and creative expressions. Inspiring guest speakers will also share valuable insights and experiences to enlighten the audience. Together, these events promote both technical excellence and holistic development among students at AIT. E-Manthana, which began in 2014, has now successfully completed 15 glorious years of inspiring innovation and technical excellence.</p>
 
         </div>
         <div class="ece-image-container">
-                <div class="image-container">
-                    <img src="emanthana.png" class="slide active" alt="ece2" />
-                    <img src="emanthana1.png" class="slide" alt="ece2" />
-                </div>
+            <div class="image-container">
+                    <img src="emanthana.jpeg" class="slide active" alt="ece2" />
+                    <img src="emanthana1.jpeg" class="slide" alt="ece2" />
+            </div>
         </div>
         
     </section>
 
     <!-- EVENT Section -->
     <section class="section" id="event">
-        <h2>Event Schedule</h2>
+        <h2>Events Schedule</h2>
         <div class="events-container">
             <!-- Pop-up Modal -->
             <div id="eventModal" class="modal">
@@ -6313,7 +6412,7 @@ body .section#result .results-placeholder p,
 
             <!-- INTERCOLLEGE EVENTS -->
             <div class="event-category">
-                <h3 class="event-category-title">Intercollege Events</h3>
+                <h3 class="event-category-title">Intercollege Events Schedule</h3>
                 <div class="event-category-cards">
                     <div class="event-card" data-event="codequest">
                         <h3><i class="fas fa-lightbulb"></i> CODEQUEST</h3>
@@ -6332,7 +6431,7 @@ body .section#result .results-placeholder p,
 
             <!-- INTERDEPARTMENT EVENTS -->
             <div class="event-category">
-                <h3 class="event-category-title">Interdepartment Events</h3>
+                <h3 class="event-category-title">Interdepartment Events Schedule</h3>
                 <div class="event-category-cards">
                     <div class="event-card" data-event="iqinfinity">
                         <h3><i class="fas fa-brain"></i> IQ INFINITY</h3>
@@ -6355,7 +6454,7 @@ body .section#result .results-placeholder p,
 
             <!-- NON-TECHNICAL EVENTS -->
             <div class="event-category">
-                <h3 class="event-category-title">Non-Technical Events</h3>
+                <h3 class="event-category-title">Non-Technical Events Schedule</h3>
                 <div class="event-category-cards">
                     <div class="event-card" data-event="freefire">
                         <h3><i class="fas fa-gamepad"></i> FREE FIRE</h3>
@@ -6370,11 +6469,11 @@ body .section#result .results-placeholder p,
 
             <!-- UPCOMING EVENTS -->
             <div class="event-category">
-                <h3 class="event-category-title">Upcoming Events</h3>
+                <h3 class="event-category-title">Upcoming conference</h3>
                 <div class="event-category-cards">
                     <div class="event-card" data-event="iq-link" style="text-align: center; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 255, 204, 0.1);">
                         <p style="font-size: 0.9rem; color: var(--primary); margin: 0; font-weight: bold;">
-                            <a href="https://www.aitecmi.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">Upcoming Event:- Click here</a>
+                            <a href="https://www.aitecmi.com/" target="_blank" style="color:#f4e9cd; text-decoration: underline;">Conference:- Click here</a>
                         </p>
                     </div>
                 </div>
@@ -6429,6 +6528,10 @@ body .section#result .results-placeholder p,
                         Every milestone reflects our dedication to excellence and innovation.
                         At Spherenex â€” Where Data Meets Innovation.
                         </p>
+                        <div class="image-container">
+                            <img src="SPRENEX.jpeg" class="slide active" alt="BGS Block View 1" />
+                            <img src="SPRENEX1.png" class="slide" alt="BGS Block View 2" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -6442,8 +6545,8 @@ body .section#result .results-placeholder p,
                 <div id="ieeModalContent">
                     <div style="text-align: center; margin-bottom: 30px;">
                         <img src="ieee.png" alt="IEEE Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
-                        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 10px;">ieee</h2>
-                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">ieee committe</p>
+                        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 10px;">IEEE</h2>
+                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">IEEE STUDENT BRANCH</p>
                     </div>
                     <div style="text-align: justify; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
                         <p>Founded in 1884, the Institute of Electrical and Electronics Engineers (IEEE) has grown into the worldâ€™s largest technical professional organization, uniting engineers, scientists, and innovators across the globe. IEEE is dedicated to advancing technology for the benefit of humanity, promoting research, innovation, and knowledge sharing in fields ranging from electronics and telecommunications to computing and robotics. By providing access to cutting-edge publications, conferences, and professional networks, IEEE empowers individuals to stay at the forefront of technological development. Its commitment to fostering education, collaboration, and professional growth makes IEEE an ideal technical partner, ensuring that projects and initiatives achieve the highest standards of excellence and innovation</p>
@@ -6458,17 +6561,17 @@ body .section#result .results-placeholder p,
                 <span class="close-btn">&times;</span>
                 <div id="innovateLabsModalContent">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <img src="innovatelabs.png" alt="InnovateLabs Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
-                        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 10px;">InnovateLabs</h2>
-                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">Technology Partner</p>
+                        <img src="nandi.png" alt="InnovateLabs Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
+                        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 10px;">NANDI PARADISE</h2>
+                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">Financial Partner</p>
                     </div>
                     <div style="text-align: justify; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
                         <p>As part of our preparations for E-Manthana, we kindly request your sponsorship support of (Cash OR We request your kind support by providing your products for our participants and visitors during the fest.) Your contribution will directly help us in hosting participants and ensuring the success of the event. In appreciation of your support, we will provide prominent branding opportunities for HANGYO across event banners, posters, promotional materials, and social media platforms, ensuring wide visibility among students and guests.
                         <br><br>
                         We sincerely hope you will extend your support and join us as a valued sponsor in making E-Manthana as a grand success.</p>
                         <div class="image-container">
-                            <img src="FRONT.png" class="slide active" alt="BGS Block View 1" />
-                            <img src="love.png" class="slide" alt="BGS Block View 2" />
+                            <img src="NANDI1.png" class="slide active" alt="BGS Block View 1" />
+                            <img src="NANDI2.jpeg" class="slide" alt="BGS Block View 2" />
                         </div>
                     </div>
                 </div>
@@ -6482,17 +6585,14 @@ body .section#result .results-placeholder p,
                 <div id="sponsor4ModalContent">
                     <div style="text-align: center; margin-bottom: 30px;">
                         <img src="cafe.jpg" alt="Sponsor 4 Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
-                        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 10px;">Energy Plantation Systems</h2>
-                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">Renewable Energy Partner</p>
+                        <h3 style="color: #0a212e; font-size: 2.2rem; margin-bottom: 10px;">Cafe Giridvara</h3>
+                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">Financial Partner</p>
                     </div>
                     <div style="text-align: justify; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
-                        <p>An energy plantation is a system where fast-growing plants are cultivated specifically to produce biomass fuel. These plants can be converted into energy through processes like combustion, gasification, or fermentation to produce biogas, ethanol, or electricity. Common species used include eucalyptus, casuarina, subabul, bamboo, and sugarcane.</p>
-                        <br>
-                        <h3 style="color: var(--primary); font-size: 1.4rem; margin-bottom: 10px;">Purpose:</h3>
-                        <p>To provide a renewable and sustainable source of energy that reduces dependence on fossil fuels and helps in carbon neutrality.</p>
+                        <p>Nestled along the scenic Beluru Road near Chikkamagaluru, Giridvara Café is a cozy haven for coffee lovers and food enthusiasts alike. Surrounded by the lush aroma of freshly roasted beans, this charming spot not only serves rich, handcrafted coffee but also offers premium coffee powder for you to take home. The menu is a delightful mix of flavors featuring a variety of sandwiches, mouthwatering Maggi, and indulgent chocolate treats customized to your taste. Whether you’re looking to unwind with a steaming cup of excellence or savor a quick bite with friends, Giridvara Café promises a warm, flavorful experience in the heart of coffee country.</p>
                         <div class="image-container">
-                            <img src="FRONT.png" class="slide active" alt="BGS Block View 1" />
-                            <img src="love.png" class="slide" alt="BGS Block View 2" />
+                            <img src="cafe1.png" class="slide active" alt="BGS Block View 1" />
+                            <img src="cafe3.png" class="slide" alt="BGS Block View 2" />
                         </div>
                     </div>
                 </div>
@@ -6506,14 +6606,40 @@ body .section#result .results-placeholder p,
                 <div id="sponsor5ModalContent">
                     <div style="text-align: center; margin-bottom: 30px;">
                         <img src="al-badar.jpeg" alt="Red Hat Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
-                        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 10px;">Red Hat</h2>
-                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">Open Source Partner</p>
+                        <h3 style="color: #0a212e; font-size: 2.2rem; margin-bottom: 10px;">AL-BADAR HOLIDAYS: </h3>
+                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;"> Financial Partner</p>
                     </div>
                     <div style="text-align: justify; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
-                        <p>In telecommunication, bringing compute resources and intelligence closer to users improves the user experience, significantly reduces service provider costs, and unlocks the innovation needed to deliver compelling services that increase revenue. However, telecommunication service providers are faced with challenges when adopting new technologies, methodologies, and automation. Every option must be evaluated for compatibility with a radio access network (RAN). Solving these challenges are the reasons Red Hat has been collaborating and contributing to the telecom industry.</p>
+                        <h2 style="color: #0a212e; font-size: 1.4rem; margin-bottom: 10px;">Your Premier Chikkamagaluru & Pan-India Travel Partner</h2>
+                        <p>AL-BADAR HOLIDAYS, established in 2012, is Chikkamagaluru's leading travel company. We specialize in crafting comprehensive holiday packages that seamlessly blend adventure and comfort. This operation is personally overseen by Noushad and his dedicated team, guaranteeing outstanding service.</p>
+                        <p>Our local expertise offers thrilling Jeep Trekking to famous spots, utilizing a fleet of over 40 jeeps. Beyond Chikkamagaluru, we offer 2 Night / 3 Day Pan-India Tour Packages across South India and more. We manage all travel logistics,and planning for College Tours, School Tours, Family Trips, Corporate Tours that includes Sight Seeing, Water Activities, Accommodation and Booking (Resorts/Home Stays). Complete transport is covered with Cab, Taxi, and Bus Booking. Popular destinations include Coorg, Mysore, Goa, Kerala, Tamil Nadu, Hyderabad, Delhi,Agra and other Cities.</p>
+
+                        <p> </p>
                         <div class="image-container">
-                            <img src="FRONT.png" class="slide active" alt="BGS Block View 1" />
-                            <img src="love.png" class="slide" alt="BGS Block View 2" />
+                            <img src="al1.png" class="slide active" alt="BGS Block View 1" />
+                            <img src="al3.png" class="slide" alt="BGS Block View 2" />
+                            <img src="al2.png" class="slide" alt="BGS Block View 2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sponsor 6 Modal -->
+        <div id="sponsor6Modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div id="sponsor6ModalContent">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <img src="HOTEL.jpeg" alt="New Sponsor Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
+                        <h3 style="color: #0a212e; font-size: 2.2rem; margin-bottom: 10px;">KAVALUBARE</h3>
+                        <p style="color: rgba(255, 255, 255, 0.8); font-size: 1.1rem; margin-bottom: 20px;">Financial Partner</p>
+                    </div>
+                    <div style="text-align: justify; color: rgba(255, 255, 255, 0.9); line-height: 1.8;">
+                        <p>Welcome to Kavalubare Retreat — a peaceful, nature-inspired homestay in the heart of the Western Ghats.Surrounded by lush greenery and coffee estates, it’s the perfect escape to slow down and embrace nature. Blending traditional hospitality with modern comforts, Kavalubare offers a warm, serene space that feels like home.Relax in cozy rooms with air conditioning, free Wi-Fi, and calm views of the hills. Savor authentic home-cooked meals, wander through plantations, and breathe in the mountain air. Kavalubare Retreat — more than a stay, it’s peace, connection, and belonging..</p>
+                        <div class="image-container">
+                            <img src="KA1.jpeg" class="slide active" alt="BGS Block View 1" />
+                            <img src="KA2.jpeg" class="slide" alt="BGS Block View 2" />
                         </div>
                     </div>
                 </div>
@@ -6521,47 +6647,54 @@ body .section#result .results-placeholder p,
         </div>
 
         <div class="sponsor-group">
-            <h3 class="sponsor-heading">Our Sponsors</h3>
             <div class="sponsor-cards">
                 <div class="sponsor-card" onclick="openSponsorModal()">
                     <div class="sponsor-badge">Technical</div>
                     <div class="sponsor-logo">
-                        <img src="SPONSOR.png" alt="Spherenex Logo" />
+                        <img src="SPONSOR.png" alt="Spherenex Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
                     </div>
                     <h4 class="sponsor-name">Spherenex</h4>
-                    <p class="sponsor-description">a unit of NexSpyder Technologies Pvt. Ltd.</p>
+                    <p class="sponsor-description">A unit of NexSpyder Technologies Pvt. Ltd.</p>
                 </div>
                 <div class="sponsor-card" onclick="openIEEEmodal()">
                     <div class="sponsor-badge">Technical</div>
                     <div class="sponsor-logo">
-                        <img src="ieee.png" alt="IEEE Logo" />
+                        <img src="ieee.png" alt="IEEE Logo" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 20px;" />
                     </div>
-                    <h4 class="sponsor-name">ieee</h4>
-                    <p class="sponsor-description">ieee committe</p>
+                    <h4 class="sponsor-name">IEEE</h4>
+                    <p class="sponsor-description">IEEE STUDENT BRANCH</p>
                 </div>
                 <div class="sponsor-card" onclick="openInnovateLabsModal()">
                     <div class="sponsor-badge">Financial</div>
                     <div class="sponsor-logo">
-                        <img src="innovatelabs.png" alt="InnovateLabs Logo" />
+                        <img src="nandi.png" alt="InnovateLabs Logo" />
                     </div>
-                    <h4 class="sponsor-name">InnovateLabs</h4>
-                    <p class="sponsor-description">Technology Partner</p>
+                    <h4 class="sponsor-name">NANDI PARADISE</h4>
+                    <p class="sponsor-description">Heavenly Taste, Earthly Joy</p>
                 </div>
                 <div class="sponsor-card" onclick="openSponsor4Modal()">
                     <div class="sponsor-badge">Financial</div>
                     <div class="sponsor-logo">
                         <img src="cafe.jpg" alt="Sponsor 4 Logo" />
                     </div>
-                    <h4 class="sponsor-name">Sponsor 4</h4>
-                    <p class="sponsor-description">Technology Partner</p>
+                    <h4 class="sponsor-name">Cafe Giridvara</h4>
+                    <p class="sponsor-description">Serving Bliss on Every Plate</p>
                 </div>
                 <div class="sponsor-card" onclick="openSponsor5Modal()">
                     <div class="sponsor-badge">Financial</div>
                     <div class="sponsor-logo">
                         <img src="al-badar.jpeg" alt="Red Hat Logo" />
                     </div>
-                    <h4 class="sponsor-name">Red Hat</h4>
-                    <p class="sponsor-description">Open Source Partner</p>
+                    <h4 class="sponsor-name">AL-BADAR HOLIDAYS</h4>
+                    <p class="sponsor-description">Explore Beyond Boundaries Together</p>
+                </div>
+                <div class="sponsor-card" onclick="openSponsor6Modal()">
+                    <div class="sponsor-badge">Financial</div>
+                    <div class="sponsor-logo">
+                        <img src="HOTEL.jpeg" alt="New Sponsor Logo" />
+                    </div>
+                    <h4 class="sponsor-name">KAVALUBARE</h4>
+                    <p class="sponsor-description">Where nature whispers peace.</p>
                 </div>
             </div>
         </div>
@@ -6591,8 +6724,8 @@ body .section#result .results-placeholder p,
                     <h4 style="color: var(--primary); margin-bottom: 15px; text-align: center;">Event Venue Photos</h4>
                     <div class="bgs-photo-container location-image-container">
                         <div class="image-container">
-                            <img src="FRONT.png" class="slide active" alt="BGS Block View 1" />
-                            <img src="love.png" class="slide" alt="BGS Block View 2" />
+                            <img src="BLOCK1.png" class="slide active" alt="BGS Block View 1" />
+                            <img src="BLOCK.png" class="slide" alt="BGS Block View 2" />
                         </div>
                     </div>
                 </div>
@@ -6613,7 +6746,7 @@ body .section#result .results-placeholder p,
                         >
                         </iframe>
                         <div class="map-fallback">
-                            <p>ðŸ“<strong>BGS Block I Location</strong></p>
+                            <p><strong>BGS Block I Location</strong></p>
                             <p>
                                 If the map doesn't load, you can view it
                                 <a href="https://aitckm.edu.in/" target="_blank" style="color: var(--primary); text-decoration: underline;">here</a>
@@ -6623,6 +6756,12 @@ body .section#result .results-placeholder p,
                 </div>
             </div>
         </div>
+
+        <!-- Custom Filter Buttons -->
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="showFacultyOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Faculty Members</button>
+            <button onclick="showStudentsOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Students</button>
+        </div>
     </section>
 
     <!-- CO-ORDINATORS Section -->
@@ -6631,8 +6770,8 @@ body .section#result .results-placeholder p,
         <p style="text-align: center; margin-bottom: 30px;">Meet our dedicated team of event coordinators</p>
         <div class="bgs-photo-container location-image-container">
             <div class="image-container">
-                <img src="FRONT.png" class="slide active" alt="BGS Block View 1" />
-                <img src="love.png" class="slide" alt="BGS Block View 2" />
+                <img src="CO1.png" class="slide active" alt="BGS Block View 1" />
+                <img src="CO2.jpeg" class="slide" alt="BGS Block View 2" />
             </div>
         </div>
 
@@ -6642,12 +6781,6 @@ body .section#result .results-placeholder p,
     <section class="section" id="contact">
         <div class="contact-section">
             <h2 class="section-title">Contact Information</h2>
-
-            <div class="controls">
-                <button class="filter-btn active" data-filter="all">Show All</button>
-                <button class="filter-btn" data-filter="faculty">Faculty Only</button>
-                <button class="filter-btn" data-filter="student">Students Only</button>
-            </div>
 
             <div class="cards-container">
                 <h3 class="category-title faculty-title">Faculty Members</h3>
@@ -6748,27 +6881,19 @@ body .section#result .results-placeholder p,
             </p>
             <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
                 <!-- Instagram 1 -->
-                <a href="https://instagram.com/" target="_blank" style="text-decoration: none; color: inherit; transition: transform 0.3s ease;">
+                <a href="https://www.instagram.com/ait_ece_official?igsh=MW05cXRzeW9zMG10Zg%3D%3D&utm_source=qr" target="_blank" style="text-decoration: none; color: inherit; transition: transform 0.3s ease;">
                     <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 30px 40px; backdrop-filter: blur(10px); border: 1px solid rgba(0, 255, 204, 0.1); transition: all 0.3s ease; min-width: 200px;">
                         <i class="fab fa-instagram" style="font-size: 3rem; color: #b62f7c; margin-bottom: 15px;"></i>
                         <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 1.2rem;">Instagram</h4>
-                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">@ECE_ait_official</p>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">@ait_ec_official</p>
                     </div>
                 </a>
                 <!--email-->
-                <a href="mailto:teamyukta2025@gmail.com" target="_blank" style="text-decoration: none; color: inherit; transition: transform 0.3s ease;">
+                <a href="mailto:ecteamyukta@gmail.com" target="_blank" style="text-decoration: none; color: inherit; transition: transform 0.3s ease;">
                     <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 30px 40px; backdrop-filter: blur(10px); border: 1px solid rgba(0, 255, 204, 0.1); transition: all 0.3s ease; min-width: 200px;">
                         <i class="fas fa-envelope" style="font-size: 3rem; color: #e25a0b; margin-bottom: 15px;"></i>
                         <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 1.2rem;">Email</h4>
-                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">teamyukta2025@gmail.com</p>
-                    </div>
-                </a>
-                <!-- LinkedIn -->
-                <a href="https://linkedin.com/company/" target="_blank" style="text-decoration: none; color: inherit; transition: transform 0.3s ease;">
-                    <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 30px 40px; backdrop-filter: blur(10px); border: 1px solid rgba(0, 255, 204, 0.1); transition: all 0.3s ease; min-width: 200px;">
-                        <i class="fab fa-linkedin" style="font-size: 3rem; color: #0A66C2; margin-bottom: 15px;"></i>
-                        <h4 style="color: var(--primary); margin-bottom: 8px; font-size: 1.2rem;">LinkedIn</h4>
-                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">E-manthana ECE AIT</p>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin: 0;">ecteamyukta@gmail.com</p>
                     </div>
                 </a>
             </div>
@@ -7247,6 +7372,12 @@ body .section#result .results-placeholder p,
                 if (sponsor4Modal.classList.contains('show')) {
                     sponsor4Modal.classList.remove('show');
                 }
+                if (sponsor5Modal.classList.contains('show')) {
+                    sponsor5Modal.classList.remove('show');
+                }
+                if (sponsor6Modal.classList.contains('show')) {
+                    sponsor6Modal.classList.remove('show');
+                }
             }
         });
 
@@ -7302,6 +7433,18 @@ body .section#result .results-placeholder p,
             sponsor5Modal.classList.remove('show');
         });
 
+        // Sponsor 6 Modal Functionality
+        const sponsor6Modal = document.getElementById("sponsor6Modal");
+
+        function openSponsor6Modal() {
+            sponsor6Modal.classList.add('show');
+        }
+
+        // Close Sponsor 6 modal functions
+        document.querySelector('#sponsor6Modal .close-btn').addEventListener('click', () => {
+            sponsor6Modal.classList.remove('show');
+        });
+
         // Close sponsor modal when clicking outside the modal content
         window.addEventListener('click', (event) => {
             if (event.target === sponsorModal) {
@@ -7318,6 +7461,12 @@ body .section#result .results-placeholder p,
             }
             if (event.target === sponsor5Modal) {
                 sponsor5Modal.classList.remove('show');
+            }
+            if (event.target === sponsor6Modal) {
+                sponsor6Modal.classList.remove('show');
+            }
+            if (event.target === sponsor6Modal) {
+                sponsor6Modal.classList.remove('show');
             }
         });
 
@@ -8111,6 +8260,21 @@ window.addEventListener('resize', optimizeImagesForMobile);
             }
         }
 
+        // Custom filter functions
+        function showFacultyOnly() {
+            document.querySelectorAll('.contact-section .card[data-category="faculty"]').forEach(card => card.style.display = 'block');
+            document.querySelectorAll('.contact-section .card[data-category="student"]').forEach(card => card.style.display = 'none');
+            document.querySelector('.contact-section .faculty-title').style.display = 'block';
+            document.querySelector('.contact-section .student-title').style.display = 'none';
+        }
+
+        function showStudentsOnly() {
+            document.querySelectorAll('.contact-section .card[data-category="faculty"]').forEach(card => card.style.display = 'none');
+            document.querySelectorAll('.contact-section .card[data-category="student"]').forEach(card => card.style.display = 'block');
+            document.querySelector('.contact-section .faculty-title').style.display = 'none';
+            document.querySelector('.contact-section .student-title').style.display = 'block';
+        }
+
         // Contact Section Filter Functionality
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.contact-section .filter-btn');
@@ -8127,30 +8291,23 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
                     const filter = this.getAttribute('data-filter');
-
-                    // Show/hide cards based on filter
-                    cards.forEach(card => {
-                        if (filter === 'all') {
-                            card.style.display = 'block';
-                            facultyTitle.style.display = 'block';
-                            studentTitle.style.display = 'block';
-                        } else {
-                            if (card.getAttribute('data-category') === filter) {
-                                card.style.display = 'block';
-                            } else {
-                                card.style.display = 'none';
-                            }
-
-                            // Show/hide section titles
-                            facultyTitle.style.display = filter === 'faculty' ? 'block' : 'none';
-                            studentTitle.style.display = filter === 'student' ? 'block' : 'none';
-                        }
-                    });
+                    if (filter === 'all') {
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        cards.forEach(card => card.style.display = 'block');
+                        facultyTitle.style.display = 'block';
+                        studentTitle.style.display = 'block';
+                    } else {
+                        this.classList.toggle('active');
+                        const activeFilters = Array.from(filterButtons).filter(btn => btn.classList.contains('active') && btn.getAttribute('data-filter') !== 'all').map(btn => btn.getAttribute('data-filter'));
+                        cards.forEach(card => {
+                            const category = card.getAttribute('data-category');
+                            card.style.display = (activeFilters.length === 0 || activeFilters.includes(category)) ? 'block' : 'none';
+                        });
+                        facultyTitle.style.display = (activeFilters.includes('faculty') || activeFilters.length === 0) ? 'block' : 'none';
+                        studentTitle.style.display = (activeFilters.includes('student') || activeFilters.length === 0) ? 'block' : 'none';
+                    }
                 });
             });
 
