@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Manthana - EC Branch Event</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Georgia&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -180,22 +181,6 @@
 
         .event-name:hover {
             transform: scale(1.02);
-        }
-
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(0, 255, 204, 0.3);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
         }
 
         .branch-container {
@@ -1038,9 +1023,10 @@
 
         /* Add custom styling for E-manthana Technical Events By "YUKTA" */
         .event-name {
+            font-family: 'Playfair Display', serif !important;
             font-size: 1.8rem !important;
-            font-weight: bold !important;
-            background: linear-gradient(45deg, #1782c0d9) !important;
+            font-weight: 900 !important;
+            background: linear-gradient(45deg, #ffbd59) !important;
             background-clip: text !important;
             -webkit-background-clip: text !important;
             color: transparent !important;
@@ -1050,6 +1036,10 @@
             margin-bottom: 10px !important;
             position: relative !important;
             display: inline-block !important;
+        }
+
+        .branch-name {
+            font-family: 'Georgia', serif !important;
         }
 
         @keyframes eventNameGlow {
@@ -1148,7 +1138,7 @@
 
         /* Home section branch name color change */
         #home .branch-name {
-            color: #db750e !important;
+            color: #ded7c7 !important;
         }
 
         /* Reduce large sizes for About subheadings and HOD label */
@@ -1950,41 +1940,8 @@
             50% { transform: rotate(5deg); }
         }
 
-        /* New Animation Elements */
-        .binary-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
 
-        .binary-digit {
-            position: absolute;
-            color: rgba(0, 100, 0, 0.3);
-            font-family: monospace;
-            font-size: 16px;
-            animation: binaryFall 10s linear infinite;
-        }
 
-        @keyframes binaryFall {
-            0% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
 
         .pulse-ring {
             position: absolute;
@@ -2051,7 +2008,6 @@
             background: #5C7C89;
             padding: 0.5rem 1rem;
             border-radius: 8px;
-            animation: fadeInDown 1s ease, titleGlow 3s infinite alternate;
         }
 
         .navbar-e, .navbar-manthana {
@@ -2337,7 +2293,7 @@
 
         .hero p {
             margin: 10px 0;
-            font-size: 1.2rem;
+            font-size: 1.0rem;
             animation: fadeIn 2.5s ease;
         }
 
@@ -3616,8 +3572,10 @@
             }
         }
 
-                /* Mobile styles (screens up to 768px wide) */
+            /* Mobile styles (screens up to 768px wide) */
         @media (max-width: 768px) {
+            
+
             body {
                 font-size: 14px;
                 overflow-x: hidden !important;
@@ -4522,7 +4480,14 @@
                 margin: 0 8px !important;
                 vertical-align: middle !important;
             }
-            /* ===== RESPONSIVE FIXES ===== */
+        /* Mobile-specific: Reduce home branch-name font size only on mobile */
+        @media (max-width: 768px) {
+            #home .branch-name {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        /* ===== RESPONSIVE FIXES ===== */
 
             /* Reset and base fixes */
             * {
@@ -4594,7 +4559,7 @@
                 
                 .branch-name,
                 .event-name {
-                    font-size: 0.9rem !important;
+                    font-size: 1.1rem !important;
                     text-align: center !important;
                     white-space: normal !important;
                     margin: 5px 0 !important;
@@ -4831,6 +4796,15 @@
                 align-items: start;
             }
 
+            /* Stack vertically only on desktop */
+            @media (min-width: 1025px) {
+                .location-photo-map-grid {
+                    grid-template-columns: 1fr;
+                    gap: 25px;
+                }
+            }
+
+            /* Stack vertically on mobile view only */
             @media (max-width: 1024px) {
                 .location-photo-map-grid {
                     grid-template-columns: 1fr;
@@ -6276,8 +6250,7 @@ body .section#result .results-placeholder p,
         </div>
     </div>
 
-    <!-- Binary Rain Animation -->
-    <div class="binary-rain" id="binaryRain"></div>
+
     
     <!-- Electronics Background Elements -->
     <div class="electronics-bg">
@@ -6341,8 +6314,8 @@ body .section#result .results-placeholder p,
             <p class="college-address">Chikkamagaluru-577102, Karnataka, India</p>
         </div>
         <div class="branch-container">
-            <p class="branch-name">DEPARTMENT OF ELECTRONICS AND COMMUNICATION ENGINEERING ORGANIZING</p>
-            <p class="event-name">E-MANTHANA TECHNICAL EVENTS BY "YUKTA"</p>
+            <p class="branch-name">Department of Electronics and Communication Engineering Presents</p>
+            <p class="event-name">E-MANTHANA TECHNICAL EVENTS BY "YUKTA" </p>
         </div>
 
         <!-- IEEE Logo below event-name -->
@@ -6756,10 +6729,10 @@ body .section#result .results-placeholder p,
         <h2 style="font-size: 3rem; margin-bottom: 40px; color: var(--primary); text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);">Event Location</h2>
         <!-- Location info and dates in one container -->
         <div class="location-info">
-            <div class="location-header" style="text-align: center;">
-                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); text-align: center; line-height: 1.6; margin: 0;">
-                    BGS Block I
-                </p>
+        <div class="location-header" style="text-align: center;">
+            <p class="location-venue-text" style="font-size: 1.2rem; color: #ffffff; text-align: center; line-height: 1.6; margin: 0; font-weight: bold; text-shadow: 0 0 10px var(--primary);">
+                BGS Block I
+            </p>
                 <div class="location-timing" style="margin-top: 5px;">
                     <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
                     <span style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: bold;">Event Dates: November 05,06,07, 2025</span>
@@ -6796,22 +6769,9 @@ body .section#result .results-placeholder p,
                             title="BGS Block Location Map"
                         >
                         </iframe>
-                        <div class="map-fallback">
-                            <p><strong>BGS Block I Location</strong></p>
-                            <p>
-                                If the map doesn't load, you can view it
-                                <a href="https://aitckm.edu.in/" target="_blank" style="color: var(--primary); text-decoration: underline;">here</a>
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Custom Filter Buttons -->
-        <div style="text-align: center; margin: 20px 0;">
-            <button onclick="showFacultyOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Faculty Members</button>
-            <button onclick="showStudentsOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Students</button>
         </div>
     </section>
 
@@ -6832,9 +6792,13 @@ body .section#result .results-placeholder p,
     <section class="section" id="contact">
         <div class="contact-section">
             <h2 class="section-title">Contact Information</h2>
-
+            <!-- Custom Filter Buttons -->
+            <div style="text-align: center; margin: 20px 0;">
+                <button onclick="showFacultyOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Faculty Members</button>
+                <button onclick="showStudentsOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Students</button>
+            </div>
             <div class="cards-container">
-                <h3 class="category-title faculty-title">Faculty Members</h3>
+                <h3 class="category-title faculty-title">Faculty coordinators</h3>
                 <div class="faculty-cards">
                     <div class="card" data-category="faculty">
                         <div class="card-image">
@@ -6960,6 +6924,65 @@ body .section#result .results-placeholder p,
     </footer>
 
     <script>
+        // Progressive Enhancement for 4G/5G Mobile Support
+        // Detect network speed and adjust features accordingly
+        function getConnectionSpeed() {
+            if ('connection' in navigator) {
+                const connection = navigator.connection;
+                const effectiveType = connection.effectiveType || 'unknown';
+
+                // Classify connection speeds
+                const fastConnections = ['4g', '5g'];
+                const mediumConnections = ['3g'];
+                const slowConnections = ['slow-2g', '2g'];
+
+                if (fastConnections.includes(effectiveType)) {
+                    return 'fast'; // 5G/4G - enable full features
+                } else if (mediumConnections.includes(effectiveType)) {
+                    return 'medium'; // 3G - enable some features
+                } else if (slowConnections.includes(effectiveType)) {
+                    return 'slow'; // 2G/slow-2g - basic features only
+                }
+            }
+            // Fallback: assume medium speed
+            return 'medium';
+        }
+
+        // Apply performance optimizations based on connection speed
+        function applyPerformanceOptimizations() {
+            const connectionType = getConnectionSpeed();
+            document.body.classList.add(`connection-${connectionType}`);
+
+            // Apply CSS optimizations for different connections
+            if (connectionType === 'slow') {
+                // Disable heavy animations, use basic styles
+                document.body.classList.add('basic-mode');
+                console.log('4G/Slow mode: Using basic features');
+            } else if (connectionType === 'medium') {
+                // Medium enhancements
+                document.body.classList.add('medium-mode');
+                console.log('3G/Medium mode: Using partial enhancements');
+            } else {
+                // Full 5G features
+                document.body.classList.add('enhanced-mode');
+                console.log('5G/Fast mode: Using all enhancements');
+            }
+        }
+
+        // Listen for connection changes and adjust accordingly
+        function monitorConnectionChanges() {
+            if ('connection' in navigator) {
+                navigator.connection.addEventListener('change', (e) => {
+                    console.log('Network connection changed:', e.target.effectiveType);
+                    // Remove previous classes
+                    document.body.classList.remove('connection-fast', 'connection-medium', 'connection-slow');
+                    document.body.classList.remove('basic-mode', 'medium-mode', 'enhanced-mode');
+                    // Re-apply optimizations
+                    applyPerformanceOptimizations();
+                });
+            }
+        }
+
         // Mobile Menu Toggle
         const menuToggle = document.getElementById("mobile-menu");
         const navLinks = document.querySelector(".navbar-links");
@@ -7110,21 +7133,7 @@ body .section#result .results-placeholder p,
             }
         }
 
-        // Create binary rain animation
-        function createBinaryRain() {
-            const binaryRain = document.getElementById('binaryRain');
-            const digits = ['0', '1'];
-            
-            for (let i = 0; i < 100; i++) {
-                const digit = document.createElement('div');
-                digit.className = 'binary-digit';
-                digit.textContent = digits[Math.floor(Math.random() * digits.length)];
-                digit.style.left = `${Math.random() * 100}%`;
-                digit.style.animationDelay = `${Math.random() * 10}s`;
-                digit.style.fontSize = `${Math.random() * 10 + 10}px`;
-                binaryRain.appendChild(digit);
-            }
-        }
+
 
         // Create pulse rings
         function createPulseRings() {
@@ -7747,35 +7756,7 @@ body .section#result .results-placeholder p,
 window.addEventListener('load', optimizeImagesForMobile);
 window.addEventListener('resize', optimizeImagesForMobile);
 
-        // Ripple effect functionality for event name
-        document.addEventListener('DOMContentLoaded', function() {
-            const eventName = document.querySelector('.event-name');
 
-            if (eventName) {
-                eventName.addEventListener('click', function(e) {
-                    // Create ripple element
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-
-                    // Calculate position relative to the event name element
-                    const rect = eventName.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    // Position the ripple
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-
-                    // Add ripple to the event name
-                    eventName.appendChild(ripple);
-
-                    // Remove ripple after animation completes
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600); // Match the animation duration
-                });
-            }
-        });
         // Launch Screen Animation
         document.addEventListener('DOMContentLoaded', function() {
             const launchScreen = document.getElementById('launch-screen');
@@ -7799,11 +7780,9 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
         // Initialize main content after launch screen
         function initializeMainContent() {
-            // Start binary rain and other animations
-            createBinaryRain();
+            // Start other animations
             createPulseRings();
             createDataStreams();
-            createHomeBinaryRain();
 
             // Add venue information to event cards
             addVenueInfoToCards();
