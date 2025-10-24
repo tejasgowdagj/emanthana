@@ -3402,6 +3402,16 @@
 
         /* Desktop styles (screens wider than 768px) */
         @media (min-width: 769px) {
+            /* Center all section cards in desktop view */
+            .event-card,
+            .sponsor-card,
+            .jury-member,
+            .contact-card,
+            .card {
+                text-align: center !important;
+                margin: 0 auto !important;
+            }
+
             .microchip {
                 animation: none !important;
             }
@@ -4257,7 +4267,6 @@
                 opacity: 1 !important;
                 visibility: visible !important;
             }
-
             /* Slightly increase spacing between IEEE and YUKTA on very small screens */
             body .yukta-block { gap: 6px !important; }
             body .yukta-block .yukta-logo-below img { width: 120px !important; height: 120px !important; object-fit: cover !important; }
@@ -4911,7 +4920,7 @@ body .section#result .result-center-card,
     backdrop-filter: blur(15px) !important;
     position: relative !important;
     z-index: 10 !important;
-    height: auto !important;
+    height: auto !important; 
     min-height: auto !important;
     box-sizing: border-box !important;
 }
