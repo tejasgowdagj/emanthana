@@ -1688,11 +1688,16 @@
                 gap: 20px;
             }
 
-            .yukta-block .glass-logo img,
-            .yukta-block .yukta-logo-below img {
-                width: 80px !important;
-                height: 80px !important;
-            }
+                        .yukta-block .glass-logo img,
+                        .yukta-block .yukta-logo-below img {
+                            width: 80px !important;
+                            height: 80px !important;
+                        }
+
+                        .devotional-text {
+                            font-size: 0.8rem !important;
+                            font-weight: 400 !important;
+                        }
         }
 
         .moving-text-below-yukta {
@@ -4214,7 +4219,7 @@
             body .college-header-logo { width:56px !important; height:56px !important; }
             body .college-name { font-size: clamp(0.95rem, 6vw, 1.15rem) !important; white-space: normal !important; text-align:center !important; padding:0 8px !important; }
             body .college-credentials, body .college-address { font-size:0.75rem !important; white-space:normal !important; text-align:center !important; margin:4px 0 !important; } 
-            body .yukta-logo-below { position:relative !important; left:auto !important; transform:none !important; top:auto !important; width:110px !important; height:110px !important; }
+            body .yukta-logo-below { position:relative !important; left:auto !important; transform:none !important; top:auto !important; width:150px !important; height:150px !important; }
             body .moving-text-below-yukta { margin: 110px 0 8px 0 !important; }
             body .content-below-yukta { margin: 0 0 80px 0 !important; }
             /* Hide only large corner logos on phones, keep animations visible */
@@ -4245,8 +4250,8 @@
                 left: auto !important;
                 right: auto !important;
                 top: auto !important;
-                width: 56px !important;
-                height: 56px !important;
+                width: 90px !important;
+                height: 90px !important;
                 margin: 6px auto !important;
                 border-radius: 50% !important;
                 background: transparent !important;
@@ -4290,7 +4295,7 @@
 
             /* Slightly increase spacing between IEEE and YUKTA on very small screens */
             body .yukta-block { gap: 6px !important; }
-            body .yukta-block .yukta-logo-below img { width: 110px !important; height: 110px !important; object-fit: cover !important; }
+            body .yukta-block .yukta-logo-below img { width: 150px !important; height: 150px !important; object-fit: cover !important; }
             body .moving-text-below-yukta { margin: 20px 0 8px 0 !important; }
         }
         /* Tablet and small phones: ensure hero stacks and scales */
@@ -4545,10 +4550,14 @@
                 }
                 
                 /* Fix college header stacking */
-                .college-header {
-                    padding: 10px !important;
-                    margin: 10px auto !important;
-                }
+            .college-header {
+                padding: 10px !important;
+                margin: 10px auto !important;
+            }
+
+            .devotional-text {
+                font-size: 0.85rem !important;
+            }
 
                 .college-header-content {
                     flex-direction: row !important;
@@ -4599,7 +4608,7 @@
                 justify-content: center !important;
                 align-items: center !important;
                 gap: 20px !important;
-                margin: 20px 0 !important;
+                margin: 5px 0 !important;
             }
 
             @media (max-width: 768px) {
@@ -6314,7 +6323,7 @@ body .section#result .results-placeholder p,
 
     <!-- College Information Header -->
     <div class="college-header">
-        <p style="margin:0;color:#fff;font-weight:500;letter-spacing:1px;">||Jai Sri Gurudev||</p>
+        <p class="devotional-text" style="margin:0;color:#fff;font-weight:500;letter-spacing:1px;">||Jai Sri Gurudev||</p>
         <!-- BGS and NRM Logos aligned on same line as college name -->
         <div class="college-header-content">
             <img src="bgs.jpeg" alt="BGS Logo" class="college-header-logo left-logo" style="width: 80px; height: 80px;">
