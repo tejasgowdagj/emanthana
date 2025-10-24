@@ -3574,7 +3574,14 @@
 
             /* Mobile styles (screens up to 768px wide) */
         @media (max-width: 768px) {
-            
+            /* Disable ripple effects in mobile view */
+            .cursor-ripple {
+                display: none !important;
+            }
+
+            .mouse-button::before {
+                display: none !important;
+            }
 
             body {
                 font-size: 14px;
@@ -4253,7 +4260,7 @@
 
             /* Slightly increase spacing between IEEE and YUKTA on very small screens */
             body .yukta-block { gap: 6px !important; }
-            body .yukta-block .yukta-logo-below img { width: 130px !important; height: 130px !important; object-fit: cover !important; }
+            body .yukta-block .yukta-logo-below img { width: 120px !important; height: 120px !important; object-fit: cover !important; }
             body .moving-text-below-yukta { margin: 20px 0 8px 0 !important; }
         }
         /* Tablet and small phones: ensure hero stacks and scales */
