@@ -1210,14 +1210,20 @@
             font-weight: bold;
         }
 
-        .news-container p,
-        .about-text p {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
+.news-container, .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.news-container p,
+.about-text p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
 
         .about-content .ece-content-after p {
             color: rgba(255, 255, 255, 0.8);
@@ -7869,8 +7875,8 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
                 trailIndex++;
 
-                // Create ripple effect occasionally
-                if (Math.random() > 0.95) {
+                // Create ripple effect occasionally (desktop only)
+                if (Math.random() > 0.95 && window.innerWidth > 768) {
                     createCursorRipple(mouseX, mouseY);
                 }
 
@@ -7881,10 +7887,12 @@ window.addEventListener('resize', optimizeImagesForMobile);
                 updateMagneticElements(mouseX, mouseY);
             });
 
-            // Click event for ripple effects
-            document.addEventListener('click', (e) => {
+        // Click event for ripple effects (desktop only)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth > 768) {
                 createCursorRipple(e.clientX, e.clientY);
-            });
+            }
+        });
 
             // Add interactive classes to key elements
             addInteractiveElements();
@@ -8047,9 +8055,12 @@ window.addEventListener('resize', optimizeImagesForMobile);
         if ('ontouchstart' in window) {
             // Keep touch interactions but allow all animations
             document.addEventListener('touchmove', (e) => {
-                // Allow natural scrolling but still create ripple effects occasionally
-                createCursorRipple(e.touches[0].clientX, e.touches[0].clientY);
+                // Allow natural scrolling but still create ripple effects occasionally (desktop only)
+                if (window.innerWidth > 768) {
+                    createCursorRipple(e.touches[0].clientX, e.touches[0].clientY);
+                }
             }, { passive: true }); // Changed to passive for better performance
+// TODO: Remove this comment after confirming no touchmove rippled effects on mobile
         }
         // Enhanced mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
