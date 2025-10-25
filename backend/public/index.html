@@ -4845,6 +4845,11 @@
                 width: 100%;
             }
 
+            /* Center student title in mobile view */
+            .category-title.student-title {
+                text-align: center !important;
+            }
+
             /* Fix footer */
             footer {
                 padding: 25px 15px !important;
@@ -5428,20 +5433,24 @@ body .section#result .results-placeholder p,
     }
 
     @media (max-width: 768px) {
-        .contact-section .faculty-cards,
-        .contact-section .student-cards {
-            gap: 15px !important;
-        }
+            .contact-section .faculty-cards,
+            .contact-section .student-cards {
+                gap: 15px !important;
+            }
 
-        .contact-section .faculty-cards .card,
-        .contact-section .student-cards .card {
-            width: 180px !important;
-            min-width: 180px !important;
-            max-width: 180px !important;
-            height: 280px !important;
-            min-height: 280px !important;
-            max-height: 280px !important;
-        }
+            .contact-section .student-cards {
+                justify-content: center !important;
+            }
+
+            .contact-section .faculty-cards .card,
+            .contact-section .student-cards .card {
+                width: 180px !important;
+                min-width: 180px !important;
+                max-width: 180px !important;
+                height: 280px !important;
+                min-height: 280px !important;
+                max-height: 280px !important;
+            }
 
         .contact-section .faculty-cards .card-image,
         .contact-section .student-cards .card-image {
