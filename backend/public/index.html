@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Manthana - EC Branch Event</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Georgia&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -162,6 +161,7 @@
 
         .branch-name {
             font-weight: bold;
+            font-family: 'Georgia', serif;
             text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
             margin-bottom: -2px; /* Pull lines closer */
             color: #FF4500;
@@ -181,6 +181,22 @@
 
         .event-name:hover {
             transform: scale(1.02);
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(0, 255, 204, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
 
         .branch-container {
@@ -1023,9 +1039,9 @@
 
         /* Add custom styling for E-manthana Technical Events By "YUKTA" */
         .event-name {
-            font-family: 'Playfair Display', serif !important;
             font-size: 1.8rem !important;
-            font-weight: 900 !important;
+            font-weight: bold !important;
+            font-family: 'Playfair Display', serif !important;
             background: linear-gradient(45deg, #ffbd59) !important;
             background-clip: text !important;
             -webkit-background-clip: text !important;
@@ -1036,10 +1052,6 @@
             margin-bottom: 10px !important;
             position: relative !important;
             display: inline-block !important;
-        }
-
-        .branch-name {
-            font-family: 'Georgia', serif !important;
         }
 
         @keyframes eventNameGlow {
@@ -1210,20 +1222,14 @@
             font-weight: bold;
         }
 
-.news-container, .about-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.news-container p,
-.about-text p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    text-align: justify;
-}
+        .news-container p,
+        .about-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
 
         .about-content .ece-content-after p {
             color: rgba(255, 255, 255, 0.8);
@@ -1602,7 +1608,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 12px 6px 12px;
+            padding: 6px 4px 6px 13px;
             border-radius: 0;
             overflow: hidden;
             cursor: pointer;
@@ -1684,16 +1690,17 @@
                 gap: 20px;
             }
 
-                        .yukta-block .glass-logo img,
-                        .yukta-block .yukta-logo-below img {
-                            width: 80px !important;
-                            height: 80px !important;
-                        }
+                .yukta-block .glass-logo img,
+                .yukta-block .yukta-logo-below img {
+                    width: 80px !important;
+                    height: 80px !important;
+                }
 
-                        .devotional-text {
-                            font-size: 0.8rem !important;
-                            font-weight: 400 !important;
-                        }
+                .yukta-block .clg-logo-corner.glass-logo img,
+                .yukta-block .ec-logo-right-corner.glass-logo img {
+                    width: 120px !important;
+                    height: 120px !important;
+                }
         }
 
         .moving-text-below-yukta {
@@ -1725,44 +1732,7 @@
             }
         }
 
-        /* Home Section Binary Animation */
-        .home-binary-rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
-        }
 
-        .home-binary-digit {
-            position: absolute;
-            color: rgba(0, 255, 204, 0.6);
-            font-family: monospace;
-            font-size: 20px;
-            font-weight: bold;
-            pointer-events: none;
-            animation: homeBinaryFall 8s infinite linear;
-        }
-
-        @keyframes homeBinaryFall {
-            0% {
-                transform: translateY(-100vh);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
-        }
 
         .signal-wave {
             position: absolute;
@@ -1948,7 +1918,6 @@
 
 
 
-
         .pulse-ring {
             position: absolute;
             border-radius: 50%;
@@ -2014,6 +1983,7 @@
             background: #5C7C89;
             padding: 0.5rem 1rem;
             border-radius: 8px;
+            animation: fadeInDown 1s ease, titleGlow 3s infinite alternate;
         }
 
         .navbar-e, .navbar-manthana {
@@ -2299,7 +2269,7 @@
 
         .hero p {
             margin: 10px 0;
-            font-size: 1.0rem;
+            font-size: 1.2rem;
             animation: fadeIn 2.5s ease;
         }
 
@@ -2470,7 +2440,7 @@
         .event-cards {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: stretch;
             gap: 50px;
             margin-bottom: 30px;
@@ -2855,7 +2825,7 @@
         .jury-wrapper {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -2973,7 +2943,7 @@
         .sponsor-cards {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center;
             gap: 30px;
         }
 
@@ -3408,16 +3378,6 @@
 
         /* Desktop styles (screens wider than 768px) */
         @media (min-width: 769px) {
-            /* Center all section cards in desktop view */
-            .event-card,
-            .sponsor-card,
-            .jury-member,
-            .contact-card,
-            .card {
-                text-align: center !important;
-                margin: 0 auto !important;
-            }
-
             .microchip {
                 animation: none !important;
             }
@@ -3588,17 +3548,8 @@
             }
         }
 
-            /* Mobile styles (screens up to 768px wide) */
+                /* Mobile styles (screens up to 768px wide) */
         @media (max-width: 768px) {
-            /* Disable ripple effects in mobile view */
-            .cursor-ripple {
-                display: none !important;
-            }
-
-            .mouse-button::before {
-                display: none !important;
-            }
-
             body {
                 font-size: 14px;
                 overflow-x: hidden !important;
@@ -4200,7 +4151,7 @@
             body .college-header-logo { width:56px !important; height:56px !important; }
             body .college-name { font-size: clamp(0.95rem, 6vw, 1.15rem) !important; white-space: normal !important; text-align:center !important; padding:0 8px !important; }
             body .college-credentials, body .college-address { font-size:0.75rem !important; white-space:normal !important; text-align:center !important; margin:4px 0 !important; } 
-            body .yukta-logo-below { position:relative !important; left:auto !important; transform:none !important; top:auto !important; width:132px !important; height:132px !important; }
+            body .yukta-logo-below { position:relative !important; left:auto !important; transform:none !important; top:auto !important; width:110px !important; height:110px !important; }
             body .moving-text-below-yukta { margin: 110px 0 8px 0 !important; }
             body .content-below-yukta { margin: 0 0 80px 0 !important; }
             /* Hide only large corner logos on phones, keep animations visible */
@@ -4233,7 +4184,7 @@
                 top: auto !important;
                 width: 90px !important;
                 height: 90px !important;
-                margin: 5px auto !important;
+                margin: 6px auto !important;
                 border-radius: 50% !important;
                 background: transparent !important;
                 padding: 2px !important;
@@ -4273,9 +4224,10 @@
                 opacity: 1 !important;
                 visibility: visible !important;
             }
+
             /* Slightly increase spacing between IEEE and YUKTA on very small screens */
             body .yukta-block { gap: 6px !important; }
-            body .yukta-block .yukta-logo-below img { width: 120px !important; height: 120px !important; object-fit: cover !important; }
+            body .yukta-block .yukta-logo-below img { width: 110px !important; height: 110px !important; object-fit: cover !important; }
             body .moving-text-below-yukta { margin: 20px 0 8px 0 !important; }
         }
         /* Tablet and small phones: ensure hero stacks and scales */
@@ -4502,14 +4454,13 @@
                 margin: 0 8px !important;
                 vertical-align: middle !important;
             }
-        /* Mobile-specific: Reduce home branch-name font size only on mobile */
-        @media (max-width: 768px) {
-            #home .branch-name {
-                font-size: 0.9rem !important;
+            /* Mobile-specific: Reduce home branch-name font size only on mobile */
+            @media (max-width: 768px) {
+                #home .branch-name {
+                    font-size: 0.75rem !important;
+                }
             }
-        }
-
-        /* ===== RESPONSIVE FIXES ===== */
+            /* ===== RESPONSIVE FIXES ===== */
 
             /* Reset and base fixes */
             * {
@@ -4537,14 +4488,10 @@
                 }
                 
                 /* Fix college header stacking */
-            .college-header {
-                padding: 10px !important;
-                margin: 10px auto !important;
-            }
-
-            .devotional-text {
-                font-size: 0.85rem !important;
-            }
+                .college-header {
+                    padding: 10px !important;
+                    margin: 10px auto !important;
+                }
 
                 .college-header-content {
                     flex-direction: row !important;
@@ -4581,7 +4528,7 @@
                 
                 .branch-name,
                 .event-name {
-                    font-size: 1.1rem !important;
+                    font-size: 0.9rem !important;
                     text-align: center !important;
                     white-space: normal !important;
                     margin: 5px 0 !important;
@@ -4595,20 +4542,16 @@
                 justify-content: center !important;
                 align-items: center !important;
                 gap: 20px !important;
-                margin: 5px 0 !important;
+                margin: 20px 0 !important;
             }
 
             @media (max-width: 768px) {
-                .college-header-content p {
-                    font-size: 0.8rem !important;
+                .home-logos-grid {
+                    flex-direction: row !important;
+                    gap: 20px !important;
+                    justify-content: center !important;
+                    align-items: center !important;
                 }
-
-                .yukta-block .glass-logo img,
-                .yukta-block .yukta-logo-below img {
-                    width: 80px !important;
-                    height: 80px !important;
-                }
-            }
                 
                 .glass-logo {
                     margin: 0 auto !important;
@@ -4818,15 +4761,6 @@
                 align-items: start;
             }
 
-            /* Stack vertically only on desktop */
-            @media (min-width: 1025px) {
-                .location-photo-map-grid {
-                    grid-template-columns: 1fr;
-                    gap: 25px;
-                }
-            }
-
-            /* Stack vertically on mobile view only */
             @media (max-width: 1024px) {
                 .location-photo-map-grid {
                     grid-template-columns: 1fr;
@@ -4843,11 +4777,6 @@
 
             .contact {
                 width: 100%;
-            }
-
-            /* Center student title in mobile view */
-            .category-title.student-title {
-                text-align: center !important;
             }
 
             /* Fix footer */
@@ -4931,7 +4860,7 @@ body .section#result .result-center-card,
     backdrop-filter: blur(15px) !important;
     position: relative !important;
     z-index: 10 !important;
-    height: auto !important; 
+    height: auto !important;
     min-height: auto !important;
     box-sizing: border-box !important;
 }
@@ -5381,51 +5310,73 @@ body .section#result .results-placeholder p,
         max-height: 320px !important;
     }
 
-    .contact-section .faculty-cards .card-image,
-    .contact-section .student-cards .card-image {
+    .contact-section .faculty-cards .card-image {
         height: 140px !important;
         min-height: 140px !important;
         max-height: 140px !important;
     }
 
-    .contact-section .faculty-cards .card-content,
-    .contact-section .student-cards .card-content {
-        padding: 15px !important;
-    }
+            .contact-section .faculty-cards .card-content,
+            .contact-section .student-cards .card-content {
+                padding: 15px !important;
+            }
 
-    .contact-section .faculty-cards .card-name,
-    .contact-section .student-cards .card-name {
-        font-size: 1.1rem !important;
-        margin-bottom: 6px !important;
-    }
+            .contact-section .faculty-cards .card-name,
+            .contact-section .student-cards .card-name {
+                font-size: 1.1rem !important;
+                margin-bottom: 6px !important;
+            }
 
-    .contact-section .faculty-cards .card-role,
-    .contact-section .student-cards .card-role {
-        font-size: 0.9rem !important;
-        margin-bottom: 10px !important;
-        padding: 4px 8px !important;
-    }
+            .contact-section .faculty-cards .card-role,
+            .contact-section .student-cards .card-role {
+                font-size: 0.9rem !important;
+                margin-bottom: 10px !important;
+                padding: 4px 8px !important;
+            }
 
-    .contact-section .faculty-cards .card-contact,
-    .contact-section .student-cards .card-contact {
-        font-size: 0.85rem !important;
-        padding: 6px 10px !important;
-    }
+            .contact-section .faculty-cards .card-contact,
+            .contact-section .student-cards .card-contact {
+                font-size: 0.85rem !important;
+                padding: 6px 10px !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 8px !important;
+                background: rgba(255, 255, 255, 0.1) !important;
+                border-radius: 6px !important;
+            }
+
+            /* Ensure student card contacts are visible on mobile */
+            .contact-section .student-cards .card-contact {
+                display: flex !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                color: #fff !important;
+                text-decoration: none !important;
+            }
+
+            .contact-section .student-cards .card-contact .fas.fa-phone-alt {
+                color: #00ffcc !important;
+                font-size: 1rem !important;
+            }
+
+            .contact-section .student-cards .card-contact span {
+                color: rgba(255, 255, 255, 0.9) !important;
+                font-weight: 500 !important;
+            }
 
     /* Responsive adjustments */
     @media (max-width: 1200px) {
-        .contact-section .faculty-cards .card,
-        .contact-section .student-cards .card {
-            width: 200px !important;
-            min-width: 200px !important;
-            max-width: 200px !important;
-            height: 300px !important;
-            min-height: 300px !important;
-            max-height: 300px !important;
-        }
-
-        .contact-section .faculty-cards .card-image,
-        .contact-section .student-cards .card-image {
+    .contact-section .faculty-cards .card,
+    .contact-section .student-cards .card {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+        height: 300px !important;
+        min-height: 300px !important;
+        max-height: 300px !important;
+    }
+        
+        .contact-section .faculty-cards .card-image {
             height: 120px !important;
             min-height: 120px !important;
             max-height: 120px !important;
@@ -5433,44 +5384,34 @@ body .section#result .results-placeholder p,
     }
 
     @media (max-width: 768px) {
-            .contact-section .faculty-cards,
-            .contact-section .student-cards {
-                gap: 15px !important;
-            }
-
-            .contact-section .student-cards {
-                justify-content: center !important;
-            }
-
-            .contact-section .faculty-cards .card,
-            .contact-section .student-cards .card {
-                width: 180px !important;
-                min-width: 180px !important;
-                max-width: 180px !important;
-                height: 280px !important;
-                min-height: 280px !important;
-                max-height: 280px !important;
-            }
-
-        .contact-section .faculty-cards .card-image,
-        .contact-section .student-cards .card-image {
+        .contact-section .faculty-cards {
+            gap: 15px !important;
+        }
+        
+        .contact-section .faculty-cards .card {
+            width: 180px !important;
+            min-width: 180px !important;
+            max-width: 180px !important;
+            height: 280px !important;
+            min-height: 280px !important;
+            max-height: 280px !important;
+        }
+        
+        .contact-section .faculty-cards .card-image {
             height: 110px !important;
             min-height: 110px !important;
             max-height: 110px !important;
         }
-
-        .contact-section .faculty-cards .card-name,
-        .contact-section .student-cards .card-name {
+        
+        .contact-section .faculty-cards .card-name {
             font-size: 1rem !important;
         }
-
-        .contact-section .faculty-cards .card-role,
-        .contact-section .student-cards .card-role {
+        
+        .contact-section .faculty-cards .card-role {
             font-size: 0.85rem !important;
         }
-
-        .contact-section .faculty-cards .card-contact,
-        .contact-section .student-cards .card-contact {
+        
+        .contact-section .faculty-cards .card-contact {
             font-size: 0.8rem !important;
         }
     }
@@ -6041,7 +5982,7 @@ body .section#result .results-placeholder p,
     .contact-section .student-cards {
         display: flex;
         flex-wrap:wrap;
-        justify-content: flex-start;
+        justify-content: center;
         gap: 30px;
         width: 100%;
     }
@@ -6327,7 +6268,7 @@ body .section#result .results-placeholder p,
 
     <!-- College Information Header -->
     <div class="college-header">
-        <p class="devotional-text" style="margin:0;color:#fff;font-weight:500;letter-spacing:1px;">||Jai Sri Gurudev||</p>
+    <p style="margin:0;color:#fff;font-weight:700;letter-spacing:1px;font-size:0.8rem;">||Jai Sri Gurudev||</p>
         <!-- BGS and NRM Logos aligned on same line as college name -->
         <div class="college-header-content">
             <img src="bgs.jpeg" alt="BGS Logo" class="college-header-logo left-logo" style="width: 80px; height: 80px;">
@@ -6336,7 +6277,6 @@ body .section#result .results-placeholder p,
         <div class="college-header-content">
             <!-- Devotional line added as requested -->
             <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
-                
                 <h4 class="college-name">ADICHUNCHANAGIRI INSTITUTE OF TECHNOLOGY</h4>
             </div>
         </div>
@@ -6346,7 +6286,7 @@ body .section#result .results-placeholder p,
         </div>
         <div class="branch-container">
             <p class="branch-name">Department of Electronics and Communication Engineering Presents</p>
-            <p class="event-name">E-MANTHANA TECHNICAL EVENTS BY "YUKTA" </p>
+            <p class="event-name">E-MANTHANA TECHNICAL EVENTS BY "YUKTA"</p>
         </div>
 
         <!-- IEEE Logo below event-name -->
@@ -6425,7 +6365,7 @@ body .section#result .results-placeholder p,
                     Department of Electronics and Communication Engineering - AIT
                     <a href="https://share.google/wnsTiEUxE4oLegec2" target="_blank" style="color: var(--primary)">here</a>
                 </p>
-        </div>   
+        </div> 
         </div>
     </div>
 </section>
@@ -6751,10 +6691,10 @@ body .section#result .results-placeholder p,
         <h2 style="font-size: 3rem; margin-bottom: 40px; color: var(--primary); text-shadow: 0 0 15px rgba(0, 255, 204, 0.8);">Event Location</h2>
         <!-- Location info and dates in one container -->
         <div class="location-info">
-        <div class="location-header" style="text-align: center;">
-            <p class="location-venue-text" style="font-size: 1.2rem; color: #ffffff; text-align: center; line-height: 1.6; margin: 0; font-weight: bold; text-shadow: 0 0 10px var(--primary);">
-                BGS Block I
-            </p>
+            <div class="location-header" style="text-align: center;">
+                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9); text-align: center; line-height: 1.6; margin: 0;">
+                    BGS Block I
+                </p>
                 <div class="location-timing" style="margin-top: 5px;">
                     <i class="fas fa-calendar-check" style="color: var(--accent); margin-right: 8px; font-size: 1.1rem;"></i>
                     <span style="color: rgba(255, 255, 255, 0.9); font-size: 1rem; font-weight: bold;">Event Dates: November 05,06,07, 2025</span>
@@ -6791,6 +6731,13 @@ body .section#result .results-placeholder p,
                             title="BGS Block Location Map"
                         >
                         </iframe>
+                        <div class="map-fallback">
+                            <p><strong>BGS Block I Location</strong></p>
+                            <p>
+                                If the map doesn't load, you can view it
+                                <a href="https://aitckm.edu.in/" target="_blank" style="color: var(--primary); text-decoration: underline;">here</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -6815,12 +6762,13 @@ body .section#result .results-placeholder p,
         <div class="contact-section">
             <h2 class="section-title">Contact Information</h2>
             <!-- Custom Filter Buttons -->
-            <div style="text-align: center; margin: 20px 0;">
-                <button onclick="showFacultyOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Faculty Members</button>
-                <button onclick="showStudentsOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Students</button>
-            </div>
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="showFacultyOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Faculty Members</button>
+            <button onclick="showStudentsOnly()" style="padding: 10px 20px; margin: 5px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer;">Students</button>
+        </div>
+
             <div class="cards-container">
-                <h3 class="category-title faculty-title">Faculty coordinators</h3>
+                <h3 class="category-title faculty-title">Faculty Members</h3>
                 <div class="faculty-cards">
                     <div class="card" data-category="faculty">
                         <div class="card-image">
@@ -6830,8 +6778,8 @@ body .section#result .results-placeholder p,
                             <h3 class="card-name">Dr. Usha K P</h3>
                             <p class="card-role">Assistant Professor</p>
                             <div class="card-contact">
-                                <i class="fas fa-phone-alt"></i>
-                                <span> ecteamyukta</span>
+                                <i class="fas fa-envelope"></i>
+                                <span>ecteamyukta</span>
                             </div>
                         </div>
                     </div>
@@ -6843,7 +6791,7 @@ body .section#result .results-placeholder p,
                             <h3 class="card-name">Dr. RaghuKumar B S</h3>
                             <p class="card-role">Assistant Professor</p>
                             <div class="card-contact">
-                                <i class="fas fa-phone-alt"></i>
+                                <i class="fas fa-envelope"></i>
                                 <span>ecteamyukta</span>
                             </div>
                         </div>
@@ -6856,7 +6804,7 @@ body .section#result .results-placeholder p,
                             <h3 class="card-name">Prof. Divya G S</h3>
                             <p class="card-role">Assistant Professor</p>
                             <div class="card-contact">
-                                <i class="fas fa-phone-alt"></i>
+                                <i class="fas fa-envelope"></i>
                                 <span>ecteamyukta</span>
                             </div>
                         </div>
@@ -6869,7 +6817,7 @@ body .section#result .results-placeholder p,
                             <h3 class="card-name">Prof. Chandrakala C T</h3>
                             <p class="card-role">Assistant Professor</p>
                             <div class="card-contact">
-                                <i class="fas fa-phone-alt"></i>
+                                <i class="fas fa-envelope"></i>
                                 <span>ecteamyukta</span>
                             </div>
                         </div>
@@ -6946,65 +6894,6 @@ body .section#result .results-placeholder p,
     </footer>
 
     <script>
-        // Progressive Enhancement for 4G/5G Mobile Support
-        // Detect network speed and adjust features accordingly
-        function getConnectionSpeed() {
-            if ('connection' in navigator) {
-                const connection = navigator.connection;
-                const effectiveType = connection.effectiveType || 'unknown';
-
-                // Classify connection speeds
-                const fastConnections = ['4g', '5g'];
-                const mediumConnections = ['3g'];
-                const slowConnections = ['slow-2g', '2g'];
-
-                if (fastConnections.includes(effectiveType)) {
-                    return 'fast'; // 5G/4G - enable full features
-                } else if (mediumConnections.includes(effectiveType)) {
-                    return 'medium'; // 3G - enable some features
-                } else if (slowConnections.includes(effectiveType)) {
-                    return 'slow'; // 2G/slow-2g - basic features only
-                }
-            }
-            // Fallback: assume medium speed
-            return 'medium';
-        }
-
-        // Apply performance optimizations based on connection speed
-        function applyPerformanceOptimizations() {
-            const connectionType = getConnectionSpeed();
-            document.body.classList.add(`connection-${connectionType}`);
-
-            // Apply CSS optimizations for different connections
-            if (connectionType === 'slow') {
-                // Disable heavy animations, use basic styles
-                document.body.classList.add('basic-mode');
-                console.log('4G/Slow mode: Using basic features');
-            } else if (connectionType === 'medium') {
-                // Medium enhancements
-                document.body.classList.add('medium-mode');
-                console.log('3G/Medium mode: Using partial enhancements');
-            } else {
-                // Full 5G features
-                document.body.classList.add('enhanced-mode');
-                console.log('5G/Fast mode: Using all enhancements');
-            }
-        }
-
-        // Listen for connection changes and adjust accordingly
-        function monitorConnectionChanges() {
-            if ('connection' in navigator) {
-                navigator.connection.addEventListener('change', (e) => {
-                    console.log('Network connection changed:', e.target.effectiveType);
-                    // Remove previous classes
-                    document.body.classList.remove('connection-fast', 'connection-medium', 'connection-slow');
-                    document.body.classList.remove('basic-mode', 'medium-mode', 'enhanced-mode');
-                    // Re-apply optimizations
-                    applyPerformanceOptimizations();
-                });
-            }
-        }
-
         // Mobile Menu Toggle
         const menuToggle = document.getElementById("mobile-menu");
         const navLinks = document.querySelector(".navbar-links");
@@ -7155,7 +7044,21 @@ body .section#result .results-placeholder p,
             }
         }
 
-
+        // Create binary rain animation
+        function createBinaryRain() {
+            const binaryRain = document.getElementById('binaryRain');
+            const digits = ['0', '1'];
+            
+            for (let i = 0; i < 100; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.textContent = digits[Math.floor(Math.random() * digits.length)];
+                digit.style.left = `${Math.random() * 100}%`;
+                digit.style.animationDelay = `${Math.random() * 10}s`;
+                digit.style.fontSize = `${Math.random() * 10 + 10}px`;
+                binaryRain.appendChild(digit);
+            }
+        }
 
         // Create pulse rings
         function createPulseRings() {
@@ -7778,7 +7681,35 @@ body .section#result .results-placeholder p,
 window.addEventListener('load', optimizeImagesForMobile);
 window.addEventListener('resize', optimizeImagesForMobile);
 
+        // Ripple effect functionality for event name
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventName = document.querySelector('.event-name');
 
+            if (eventName) {
+                eventName.addEventListener('click', function(e) {
+                    // Create ripple element
+                    const ripple = document.createElement('span');
+                    ripple.classList.add('ripple');
+
+                    // Calculate position relative to the event name element
+                    const rect = eventName.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    // Position the ripple
+                    ripple.style.left = x + 'px';
+                    ripple.style.top = y + 'px';
+
+                    // Add ripple to the event name
+                    eventName.appendChild(ripple);
+
+                    // Remove ripple after animation completes
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600); // Match the animation duration
+                });
+            }
+        });
         // Launch Screen Animation
         document.addEventListener('DOMContentLoaded', function() {
             const launchScreen = document.getElementById('launch-screen');
@@ -7802,7 +7733,8 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
         // Initialize main content after launch screen
         function initializeMainContent() {
-            // Start other animations
+            // Start binary rain and other animations
+            createBinaryRain();
             createPulseRings();
             createDataStreams();
 
@@ -7875,8 +7807,8 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
                 trailIndex++;
 
-                // Create ripple effect occasionally (desktop only)
-                if (Math.random() > 0.95 && window.innerWidth > 768) {
+                // Create ripple effect occasionally
+                if (Math.random() > 0.95) {
                     createCursorRipple(mouseX, mouseY);
                 }
 
@@ -7887,12 +7819,10 @@ window.addEventListener('resize', optimizeImagesForMobile);
                 updateMagneticElements(mouseX, mouseY);
             });
 
-        // Click event for ripple effects (desktop only)
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth > 768) {
+            // Click event for ripple effects
+            document.addEventListener('click', (e) => {
                 createCursorRipple(e.clientX, e.clientY);
-            }
-        });
+            });
 
             // Add interactive classes to key elements
             addInteractiveElements();
@@ -8055,12 +7985,9 @@ window.addEventListener('resize', optimizeImagesForMobile);
         if ('ontouchstart' in window) {
             // Keep touch interactions but allow all animations
             document.addEventListener('touchmove', (e) => {
-                // Allow natural scrolling but still create ripple effects occasionally (desktop only)
-                if (window.innerWidth > 768) {
-                    createCursorRipple(e.touches[0].clientX, e.touches[0].clientY);
-                }
+                // Allow natural scrolling but still create ripple effects occasionally
+                createCursorRipple(e.touches[0].clientX, e.touches[0].clientY);
             }, { passive: true }); // Changed to passive for better performance
-// TODO: Remove this comment after confirming no touchmove rippled effects on mobile
         }
         // Enhanced mobile menu functionality
         document.addEventListener('DOMContentLoaded', function() {
