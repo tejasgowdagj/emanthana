@@ -7983,10 +7983,9 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
         // Enable all animations for all devices including mobile
         if ('ontouchstart' in window) {
-            // Keep touch interactions but allow all animations
+            // Keep touch interactions but disable ripple effects on mobile
             document.addEventListener('touchmove', (e) => {
-                // Allow natural scrolling but still create ripple effects occasionally
-                createCursorRipple(e.touches[0].clientX, e.touches[0].clientY);
+                // Allow natural scrolling without ripple effects on mobile
             }, { passive: true }); // Changed to passive for better performance
         }
         // Enhanced mobile menu functionality
