@@ -1732,7 +1732,44 @@
             }
         }
 
+        /* Home Section Binary Animation */
+        .home-binary-rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
 
+        .home-binary-digit {
+            position: absolute;
+            color: rgba(0, 255, 204, 0.6);
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: bold;
+            pointer-events: none;
+            animation: homeBinaryFall 8s infinite linear;
+        }
+
+        @keyframes homeBinaryFall {
+            0% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
 
         .signal-wave {
             position: absolute;
@@ -1916,7 +1953,41 @@
             50% { transform: rotate(5deg); }
         }
 
+        /* New Animation Elements */
+        .binary-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
 
+        .binary-digit {
+            position: absolute;
+            color: rgba(0, 100, 0, 0.3);
+            font-family: monospace;
+            font-size: 16px;
+            animation: binaryFall 10s linear infinite;
+        }
+
+        @keyframes binaryFall {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
 
         .pulse-ring {
             position: absolute;
@@ -3945,7 +4016,7 @@
                 height: auto;
             }
 
-                        .home-logos-grid img {
+            .home-logos-grid img {
                 width: 90px !important;
                 height: 90px !important;
                 margin-bottom: 8px !important;
@@ -4085,7 +4156,7 @@
                 height: 100px !important;
             }
 
-                        .moving-text {
+            .moving-text {
                 font-size: 1.5rem !important;
                 padding: 0 15px !important;
             }
@@ -4216,8 +4287,8 @@
                 left: auto !important;
                 top: auto !important;
                 transform: none !important;
-                width: 120px !important;
-                height: 100px !important;
+                width: 90px !important;
+                height: 90px !important;
                 align-items: center !important;
                 justify-content: center !important;
                 z-index: 60 !important;
@@ -6222,7 +6293,8 @@ body .section#result .results-placeholder p,
         </div>
     </div>
 
-
+    <!-- Binary Rain Animation -->
+    <div class="binary-rain" id="binaryRain"></div>
     
     <!-- Electronics Background Elements -->
     <div class="electronics-bg">
@@ -6291,7 +6363,7 @@ body .section#result .results-placeholder p,
 
         <!-- IEEE Logo below event-name -->
         <div class="ieee-logo-below-event" onclick="zoomImage(this)">
-            <img src="ieee.png" alt="IEEE Logo" style="width: 110px; height: 70px;">
+            <img src="ieee.png" alt="IEEE Logo" style="width: 100px; height: 50px;">
         </div>
     </div>
     <!-- Floating Decorative Elements -->
@@ -7737,6 +7809,7 @@ window.addEventListener('resize', optimizeImagesForMobile);
             createBinaryRain();
             createPulseRings();
             createDataStreams();
+            createHomeBinaryRain();
 
             // Add venue information to event cards
             addVenueInfoToCards();
@@ -7983,9 +8056,10 @@ window.addEventListener('resize', optimizeImagesForMobile);
 
         // Enable all animations for all devices including mobile
         if ('ontouchstart' in window) {
-            // Keep touch interactions but disable ripple effects on mobile
+            // Keep touch interactions but allow all animations
             document.addEventListener('touchmove', (e) => {
-                // Allow natural scrolling without ripple effects on mobile
+                // Allow natural scrolling but still create ripple effects occasionally
+                createCursorRipple(e.touches[0].clientX, e.touches[0].clientY);
             }, { passive: true }); // Changed to passive for better performance
         }
         // Enhanced mobile menu functionality
