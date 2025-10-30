@@ -7205,10 +7205,12 @@ body .section#result .results-placeholder p,
         // Initialize animations on load
         window.addEventListener('load', () => {
             createCircuitElements();
-            createBinaryRain();
+            if (window.innerWidth > 768) {
+                createBinaryRain();
+                createHomeBinaryRain();
+            }
             createPulseRings();
             createDataStreams();
-            createHomeBinaryRain();
 
             // Set text immediately without animation
             const heroText = document.querySelector('.moving-text');
@@ -7753,12 +7755,17 @@ body .section#result .results-placeholder p,
 window.addEventListener('load', optimizeImagesForMobile);
 window.addEventListener('resize', optimizeImagesForMobile);
 
-        // Ripple effect functionality for event name
+        // Ripple effect functionality for event name (disabled on mobile)
         document.addEventListener('DOMContentLoaded', function() {
             const eventName = document.querySelector('.event-name');
 
             if (eventName) {
                 eventName.addEventListener('click', function(e) {
+                    // Skip ripple effect on mobile devices (width <= 768px)
+                    if (window.innerWidth <= 768) {
+                        return;
+                    }
+
                     // Create ripple element
                     const ripple = document.createElement('span');
                     ripple.classList.add('ripple');
@@ -7806,10 +7813,12 @@ window.addEventListener('resize', optimizeImagesForMobile);
         // Initialize main content after launch screen
         function initializeMainContent() {
             // Start binary rain and other animations
-            createBinaryRain();
+            if (window.innerWidth > 768) {
+                createBinaryRain();
+                createHomeBinaryRain();
+            }
             createPulseRings();
             createDataStreams();
-            createHomeBinaryRain();
 
             // Add venue information to event cards
             addVenueInfoToCards();
@@ -8127,10 +8136,12 @@ window.addEventListener('resize', optimizeImagesForMobile);
             // Reinitialize animations after orientation change
             setTimeout(() => {
                 createCircuitElements();
-                createBinaryRain();
+                if (window.innerWidth > 768) {
+                    createBinaryRain();
+                    createHomeBinaryRain();
+                }
                 createPulseRings();
                 createDataStreams();
-                createHomeBinaryRain();
             }, 500);
         });
 
